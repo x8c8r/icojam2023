@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7i2je550pg0r"]
+[gd_scene load_steps=3 format=3 uid="uid://c7i2je550pg0r"]
 
 [ext_resource type="Script" path="res://Systems/Inventory/inventory.gd" id="1_uwmls"]
+[ext_resource type="PackedScene" uid="uid://c0g5g5d5km30u" path="res://Objects/Player/player.tscn" id="2_pvvyv"]
 
 [node name="InitScene" type="Node2D"]
 
 [node name="Inventory" type="Node2D" parent="."]
 script = ExtResource("1_uwmls")
+
+[node name="player" parent="." instance=ExtResource("2_pvvyv")]
