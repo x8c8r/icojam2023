@@ -10,3 +10,6 @@ func turn_end() -> void:
 func _on_timer_timeout():
 	turn_end()
 	pass
+	
+func get_grid() -> Grid:
+	return get_tree().current_scene.get_node("Grid")

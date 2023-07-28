@@ -13,3 +13,6 @@ func change_state(target_state:player_state) -> void:
 
 func get_current_state() -> player_state:
 	return current_state
+	
+func _process(delta):
+	print(GameManager.get_grid().get_cell(Vector2(0, 0)))
