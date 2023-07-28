@@ -1,12 +1,15 @@
 extends Node2D
 
-func _ready():
-	GameManager.turn_ended.connect(func(): print("end"))
-	pass # Replace with function body.
-	
-	
+enum player_state {
+	IDLE,
+	MOVE,
+	ATTACK
+}
 
+var current_state:player_state = player_state.IDLE
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func change_state(target_state:player_state) -> void:
+	current_state = target_state
+
+func get_current_state() -> player_state:
+	return current_state

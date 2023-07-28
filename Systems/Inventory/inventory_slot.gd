@@ -9,3 +9,9 @@ var index:int = 0
 
 func _init(index:int):
 	self.index = index
+
+func set_item(item:Item) -> void:
+	self.item = item
+	
+func get_item() -> Item:
+	return item
