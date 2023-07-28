@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7i2je550pg0r"]
+
+[ext_resource type="Script" path="res://Systems/Inventory/inventory.gd" id="1_uwmls"]
+
+[node name="InitScene" type="Node2D"]
+
+[node name="Inventory" type="Node2D" parent="."]
+script = ExtResource("1_uwmls")
