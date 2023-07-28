@@ -27,3 +27,5 @@ func check_movement(increment:Vector2):
 		can_move = true
 	
 	
+
+func _process
