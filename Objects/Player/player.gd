@@ -7,6 +7,7 @@ var inputs:Dictionary
 # MOVEMENT
 var move_tile_target:Vector2
 var prev_move_tile_target:Vector2 = move_tile_target
+@export var attack_damage = 1
 
 ## OUTLINE
 @onready var outlines:Array = [$Icon, $Icon2, $Icon3, $Icon4]
@@ -22,7 +23,7 @@ func color_outline() -> void:
 				out.modulate = Color.YELLOW				
 
 func move_outline(target_pos:Vector2) -> void:
-	pass
+	
 	$Icon.visible = GridHelper.is_valid_movement($"../Collision", GridHelper.get_cell_pos_in_tilemap($"../Collision", position)+Vector2i.RIGHT, GridHelper.get_cell_pos_in_tilemap($"../Collision", position))
 	$Icon2.visible = GridHelper.is_valid_movement($"../Collision", GridHelper.get_cell_pos_in_tilemap($"../Collision", position)+Vector2i.LEFT, GridHelper.get_cell_pos_in_tilemap($"../Collision", position))
 	$Icon3.visible = GridHelper.is_valid_movement($"../Collision", GridHelper.get_cell_pos_in_tilemap($"../Collision", position)+Vector2i.DOWN, GridHelper.get_cell_pos_in_tilemap($"../Collision", position))
@@ -52,6 +53,9 @@ func _process(delta:float):
 	
 # STATES
 
+
+
+
 func change_state(target_state:entityState) -> void:
 	current_state = target_state
 
@@ -69,7 +73,7 @@ func attack_state() -> void:
 	super()
 	if inputs.confirm_action:
 		var pos = GridHelper.get_cell_pos_in_tilemap(tilemap, get_viewport().get_mouse_position())
-		print(Inventory.get_weapon())
+		#print(Inventory.get_weapon())
 		if Inventory.get_weapon():
 			var wep = Inventory.get_weapon()
 			var dir = GridHelper.get_cell_pos_in_tilemap(tilemap, position)-pos
@@ -110,4 +114,4 @@ func damage(amount):
 	hp -= amount
 	if hp <= 0:
 		get_tree().reload_current_scene()
-	print("wow motherfucker you did " + str(amount) + " hp! I have " +str(hp))
+	#print("wow motherfucker you did " + str(amount) + " hp! I have " +str(hp))

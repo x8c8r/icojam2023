@@ -18,6 +18,11 @@ func use_item(direction:Vector2i) -> void:
 		for enemy in EnemiesManager.enemies:
 			var en = EnemiesManager.enemies[enemy]
 			if GridHelper.get_cell_pos_in_tilemap(player.tilemap, en.position) == target:
-				print("found a fucker")
+#				print("found a fucker")
+#				print(en)
+				en.take_damage(GameManager.get_player().attack_damage)
+				GameManager.emit_signal("turn_ended")
+				GameManager.get_player().change_state(GameManager.get_player().entityState.MOVE)
+				print(GameManager.get_player().get_current_state())
 	
 	

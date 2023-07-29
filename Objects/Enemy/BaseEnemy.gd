@@ -26,7 +26,7 @@ func process_end_state():
 	var direction = tile_player_pos - tile_pos
 	if $warning.visible:
 		if direction.length() < 1.2:
-			print("get fucked")
+			#print("get fucked")
 			player.damage(damage)
 		else:
 			$warning.hide()
@@ -35,29 +35,29 @@ func process_end_state():
 		$warning.show()
 		return
 	elif tile_player_pos.x != tile_pos.x and tile_player_pos.y != tile_pos.y:
-		print("xy")
+		#print("xy")
 		var rand = randf()
-		print(EnemiesManager.enemies_targets)
+		#print(EnemiesManager.enemies_targets)
 		if rand > .5 and not Vector2i(clamp(direction.x, -1, 1), 0) + tile_pos in EnemiesManager.enemies_targets.values():
 			EnemiesManager.enemies_targets[self] = Vector2i(clamp(direction.x, -1, 1), 0) + tile_pos
 			move(Vector2i(clamp(direction.x, -1, 1), 0) + tile_pos)
-			print("->x")
+			#print("->x")
 
 		if rand <= .5 and not Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos in EnemiesManager.enemies_targets.values():
 			EnemiesManager.enemies_targets[self] = Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos
 			move(Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos)
-			print("->y")
+			#print("->y")
 		
 
 	elif tile_player_pos.x != tile_pos.x and not Vector2i(clamp(direction.x, -1, 1), 0) + tile_pos in EnemiesManager.enemies_targets.values():
 		
 		EnemiesManager.enemies_targets[self] = Vector2i(clamp(direction.x, -1, 1), 0) + tile_pos
-		print("x")
+		#print("x")
 		move(Vector2i(clamp(direction.x, -1, 1), 0) + tile_pos)
 	elif tile_player_pos.y != tile_pos.y and not Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos in EnemiesManager.enemies_targets.values():
 		
 		EnemiesManager.enemies_targets[self] = Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos
-		print("y")
+		#print("y")
 		move(Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos)
 
 	else:
@@ -65,10 +65,11 @@ func process_end_state():
 
 func compute_stats():
 	damage = level + 1
-	hp = level+1
+	hp = level
 
 func take_damage(amount):
-	print("ow motherfucker you did " + amount + " hp!")
 	hp -= 1
 	if hp <= 0:
+		EnemiesManager.enemies.erase(self)
+		EnemiesManager.enemies_targets.erase(self)
 		queue_free()

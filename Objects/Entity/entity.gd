@@ -17,6 +17,8 @@ func move(target_pos:Vector2i) -> void:
 	var pos = GridHelper.get_cell_pos_in_world(tilemap, target_pos)
 	position = pos
 
+
+
 ## STATES
 enum entityState {
 	MOVE,
@@ -62,6 +64,6 @@ func reset_state_stuff() -> void:
 	
 # END OF TURN
 func end_turn() -> void:
-	print_debug("END OF A TURN")
+	#print_debug("END OF A TURN")
 	process_end_state()
 	reset_state_stuff()
