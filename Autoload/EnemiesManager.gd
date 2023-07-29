@@ -1,7 +1,7 @@
 extends Node
 
-var enemies := {}
-var enemies_targets := {}
+var enemies:Array = []
+var enemies_targets:Array = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

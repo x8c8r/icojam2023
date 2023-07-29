@@ -13,11 +13,12 @@ func _ready():
 	super()
 	compute_stats()
 	if !EnemiesManager.enemies.has(self):
-		EnemiesManager.enemies[len(EnemiesManager.enemies)] = self
+		EnemiesManager.enemies.append(self)
 
 func process_end_state():
 	super()
 	
+	var enemy_target:int = EnemiesManager.enemies_targets.find(self)
 	
 	var collision = GameManager.get_collision()
 	var player = GameManager.get_player()
@@ -38,25 +39,26 @@ func process_end_state():
 		#print("xy")
 		var rand = randf()
 		#print(EnemiesManager.enemies_targets)
-		if rand > .5 and not Vector2i(clamp(direction.x, -1, 1), 0) + tile_pos in EnemiesManager.enemies_targets.values():
-			EnemiesManager.enemies_targets[self] = Vector2i(clamp(direction.x, -1, 1), 0) + tile_pos
+		
+		if rand > .5 and not EnemiesManager.enemies_targets.has(Vector2i(clamp(direction.x, -1, 1), 0) + tile_pos):
+			EnemiesManager.enemies_targets.append(Vector2i(clamp(direction.x, -1, 1), 0) + tile_pos)
 			move(Vector2i(clamp(direction.x, -1, 1), 0) + tile_pos)
 			#print("->x")
 
-		if rand <= .5 and not Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos in EnemiesManager.enemies_targets.values():
-			EnemiesManager.enemies_targets[self] = Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos
+		if rand <= .5 and not EnemiesManager.enemies_targets.has(Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos):
+			EnemiesManager.enemies_targets.append(Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos)
 			move(Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos)
 			#print("->y")
 		
 
-	elif tile_player_pos.x != tile_pos.x and not Vector2i(clamp(direction.x, -1, 1), 0) + tile_pos in EnemiesManager.enemies_targets.values():
+	elif tile_player_pos.x != tile_pos.x and not EnemiesManager.enemies_targets.has(Vector2i(clamp(direction.x, -1, 1), 0) + tile_pos):
 		
-		EnemiesManager.enemies_targets[self] = Vector2i(clamp(direction.x, -1, 1), 0) + tile_pos
+		EnemiesManager.enemies_targets.append(Vector2i(clamp(direction.x, -1, 1), 0) + tile_pos)
 		#print("x")
 		move(Vector2i(clamp(direction.x, -1, 1), 0) + tile_pos)
-	elif tile_player_pos.y != tile_pos.y and not Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos in EnemiesManager.enemies_targets.values():
+	elif tile_player_pos.y != tile_pos.y and not EnemiesManager.enemies_targets.has(Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos):
 		
-		EnemiesManager.enemies_targets[self] = Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos
+		EnemiesManager.enemies_targets[enemy_target] = Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos
 		#print("y")
 		move(Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos)
 
@@ -70,6 +72,9 @@ func compute_stats():
 func take_damage(amount):
 	hp -= 1
 	if hp <= 0:
-		EnemiesManager.enemies.erase(self)
-		EnemiesManager.enemies_targets.erase(self)
+		var newEnemyList = []
+		EnemiesManager.enemies = EnemiesManager.enemies_targets.filter(func(val): return val != self)
+		EnemiesManager.enemies = EnemiesManager.enemies.filter(func(val): return val != self)
+		
+		EnemiesManager.enemies = newEnemyList
 		queue_free()

@@ -22,6 +22,10 @@ GridHelper="*res://Autoload/grid_helper.gd"
 Inventory="*res://Systems/Inventory/Inventory.tscn"
 EnemiesManager="*res://Autoload/EnemiesManager.gd"
 
+[editor]
+
+movie_writer/movie_file="D:/Projects/icojam2023/s.avi"
+
 [input]
 
 action_toggle_move_attack={
