@@ -7,3 +7,5 @@ class_name BaseSword extends Weapon
 @export var range:int = 1
 
 ## TODO: Add actual attack mechanic after we are done with tileset
+func use_item() -> void:
+	print("used a sword lmao")
