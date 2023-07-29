@@ -1,4 +1,4 @@
-class_name Item extends Node2D
+class_name Item extends Resource
 
 @export_group("Info")
 ## Title of the item
@@ -10,5 +10,5 @@ class_name Item extends Node2D
 ## Max amount of item in the inventory
 @export var max_amount:int = 1 
 
-func use_item() -> void:
+func use_item(direction:Vector2i) -> void:
 	pass

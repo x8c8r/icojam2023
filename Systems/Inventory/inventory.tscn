@@ -1,6 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://ckq4dvqrg706j"]
+[gd_scene load_steps=6 format=3 uid="uid://b2ji1pnq5cjtc"]
 
-[ext_resource type="Script" path="res://Systems/Inventory/inventory.gd" id="1_xb4i2"]
+[ext_resource type="Script" path="res://DB/Items/base_sword.gd" id="1_2p4sd"]
+[ext_resource type="Script" path="res://Systems/Inventory/InventorySlot.gd" id="2_dbun8"]
 
-[node name="inventory" type="Node2D"]
-script = ExtResource("1_xb4i2")
+[sub_resource type="GDScript" id="GDScript_6nl4w"]
+script/source = "extends Node2D
+
+@export var slots:Array[InventorySlot] = []
+
+func get_weapon() -> Item:
+	for slot in slots:
+		if slot.item is BaseSword:
+			return slot.item
+	return null
+"
+
+[sub_resource type="Resource" id="Resource_yswqw"]
+script = ExtResource("1_2p4sd")
+title = "THE FUCKIKNG SWORD"
+description = ""
+max_amount = 1
+
+[sub_resource type="Resource" id="Resource_lnfxs"]
+script = ExtResource("2_dbun8")
+item = SubResource("Resource_yswqw")
+
+[node name="Inventory" type="Node2D"]
+script = SubResource("GDScript_6nl4w")
+slots = Array[ExtResource("2_dbun8")]([SubResource("Resource_lnfxs")])

@@ -43,6 +43,8 @@ func _process(delta:float):
 	inputs = check_inputs()
 	handle_inputs(inputs)
 	
+	
+	
 	super(delta)
 	
 	color_outline()
@@ -65,6 +67,14 @@ func state_change() -> void:
 			
 func attack_state() -> void:
 	super()
+	if inputs.confirm_action:
+		var pos = GridHelper.get_cell_pos_in_tilemap(tilemap, get_viewport().get_mouse_position())
+		print(Inventory.get_weapon())
+		if Inventory.get_weapon():
+			var wep = Inventory.get_weapon()
+			var dir = GridHelper.get_cell_pos_in_tilemap(tilemap, position)-pos
+			wep.use_item(dir)
+	
 	pass
 	
 func move_state() -> void:
@@ -97,7 +107,7 @@ func reset_state_stuff() -> void:
 	pass
 
 func damage(amount):
-	print("ow motherfucker you did " + amount + " hp!")
+	print("wow motherfucker you did " + str(amount) + " hp!")
 	hp -= 1
 	if hp <= 0:
 		get_tree().reload_current_scene()

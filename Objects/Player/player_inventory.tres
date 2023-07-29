@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="InventoryData" load_steps=8 format=3 uid="uid://ccx60olg8jibq"]
+
+[ext_resource type="Script" path="res://Systems/NewInventory/inventory_data.gd" id="1_ehyan"]
+[ext_resource type="Script" path="res://Systems/NewInventory/equippable_item.gd" id="2_giufi"]
+[ext_resource type="Script" path="res://Systems/NewInventory/slot.gd" id="3_hhpno"]
+
+[sub_resource type="Resource" id="Resource_nsnlv"]
+script = ExtResource("2_giufi")
+equipped = false
+name = "test"
+desc = ""
+max_amount = 1
+slot_amount = 1
+
+[sub_resource type="Resource" id="Resource_2gyay"]
+script = ExtResource("3_hhpno")
+item = SubResource("Resource_nsnlv")
+
+[sub_resource type="Resource" id="Resource_j3ocp"]
+script = ExtResource("3_hhpno")
+
+[sub_resource type="Resource" id="Resource_oou7i"]
+script = ExtResource("3_hhpno")
+
+[resource]
+script = ExtResource("1_ehyan")
+slots = Array[ExtResource("3_hhpno")]([SubResource("Resource_2gyay"), SubResource("Resource_j3ocp"), SubResource("Resource_oou7i")])

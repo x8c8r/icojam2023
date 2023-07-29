@@ -9,6 +9,12 @@ class_name BaseEnemy extends Entity
 var move_tile_target:Vector2
 var prev_move_tile_target:Vector2 = move_tile_target
 
+func _ready():
+	super()
+	compute_stats()
+	if !EnemiesManager.enemies.has(self):
+		EnemiesManager.enemies[len(EnemiesManager.enemies)] = self
+
 func process_end_state():
 	print("wtf")
 	super()
@@ -44,8 +50,6 @@ func process_end_state():
 		print("y")
 		move(Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos)
 
-func _ready():
-	compute_stats()
 
 func compute_stats():
 	damage = level + 1

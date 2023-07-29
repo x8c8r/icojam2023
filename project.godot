@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameManager="*res://Autoload/game_manager.tscn"
 GridHelper="*res://Autoload/grid_helper.gd"
+Inventory="*res://Systems/Inventory/Inventory.tscn"
 EnemiesManager="*res://Autoload/EnemiesManager.gd"
 
 [input]
