@@ -7,28 +7,46 @@ var inputs:Dictionary
 # MOVEMENT
 var move_tile_target:Vector2
 var prev_move_tile_target:Vector2 = move_tile_target
-@export var attack_damage = 1
+@export var attack_damage = 5
 
 ## OUTLINE
-@onready var outlines:Array = [$Icon, $Icon2, $Icon3, $Icon4]
+@onready var outlines:Array[Outline] = [$R_Out, $L_Out, $U_Out, $D_Out]
+var cur_outline:Outline
+var last_outline:Outline
+	
 func color_outline() -> void:
 	match get_current_state():
 		entityState.MOVE:
 			for n in len(outlines):
-				var out:Sprite2D = outlines[n]
-				out.modulate = Color.GREEN
+				var out:Outline = outlines[n]
+				out.set_color(Color.GREEN)
 		entityState.ATTACK:
 			for n in len(outlines):
-				var out:Sprite2D = outlines[n]
-				out.modulate = Color.YELLOW				
+				var out:Outline = outlines[n]
+				out.set_color(Color.YELLOW)		
 
 func move_outline(target_pos:Vector2) -> void:
-	
-	$Icon.visible = GridHelper.is_valid_movement($"../Collision", GridHelper.get_cell_pos_in_tilemap($"../Collision", position)+Vector2i.RIGHT, GridHelper.get_cell_pos_in_tilemap($"../Collision", position))
-	$Icon2.visible = GridHelper.is_valid_movement($"../Collision", GridHelper.get_cell_pos_in_tilemap($"../Collision", position)+Vector2i.LEFT, GridHelper.get_cell_pos_in_tilemap($"../Collision", position))
-	$Icon3.visible = GridHelper.is_valid_movement($"../Collision", GridHelper.get_cell_pos_in_tilemap($"../Collision", position)+Vector2i.DOWN, GridHelper.get_cell_pos_in_tilemap($"../Collision", position))
-	$Icon4.visible = GridHelper.is_valid_movement($"../Collision", GridHelper.get_cell_pos_in_tilemap($"../Collision", position)+Vector2i.UP, GridHelper.get_cell_pos_in_tilemap($"../Collision", position))
+	for outline in outlines:
+		outline.update(target_pos, position)
 
+func get_outline(dir:Vector2i) -> Outline:
+	match dir:
+		Vector2i.DOWN:
+			return $U_Out
+		Vector2i.UP:
+			return $D_Out
+		Vector2i.RIGHT:
+			return $L_Out
+		Vector2i.LEFT:
+			return $R_Out			
+		_:
+			return null
+			
+func reset_outline() -> void:
+	if cur_outline:
+		cur_outline.selected = false
+	cur_outline = null
+	last_outline = null
 # LOOP
 func check_inputs() -> Dictionary:
 	return {
@@ -44,29 +62,24 @@ func _process(delta:float):
 	inputs = check_inputs()
 	handle_inputs(inputs)
 	
-	
-	
 	super(delta)
 	
 	color_outline()
 	move_outline(get_viewport().get_mouse_position())
 	
 # STATES
-
-
-
-
 func change_state(target_state:entityState) -> void:
 	current_state = target_state
+	reset_outline()
 
 func get_current_state() -> entityState:
 	return current_state
 	
 func state_change() -> void:
 	if current_state == entityState.ATTACK:
-		current_state = entityState.MOVE
+		change_state(entityState.MOVE)
 	else:
-		current_state = entityState.ATTACK
+		change_state(entityState.ATTACK)
 	
 			
 func attack_state() -> void:
@@ -78,7 +91,12 @@ func attack_state() -> void:
 			var wep = Inventory.get_weapon()
 			var dir = GridHelper.get_cell_pos_in_tilemap(tilemap, position)-pos
 			wep.use_item(dir)
-	
+			cur_outline = get_outline(dir)
+			if cur_outline:
+				cur_outline.selected = true
+				if cur_outline != last_outline && last_outline:
+					last_outline.selected = false
+				last_outline = cur_outline
 	pass
 	
 func move_state() -> void:
@@ -87,7 +105,13 @@ func move_state() -> void:
 		var pos = GridHelper.get_cell_pos_in_tilemap(tilemap, get_viewport().get_mouse_position())
 		
 		if GridHelper.is_valid_movement(tilemap,GridHelper.get_cell_pos_in_tilemap(tilemap, position),pos):
-			move_tile_target = pos		
+			cur_outline = get_outline(GridHelper.get_movement_direction(tilemap, GridHelper.get_cell_pos_in_tilemap(tilemap, position), pos))
+			if cur_outline:
+				cur_outline.selected = true
+				if cur_outline != last_outline && last_outline:
+					last_outline.selected = false
+				last_outline = cur_outline
+			move_tile_target = pos
 	pass
 	
 func process_end_state() -> void: # THE ACTUAL ACTION THAT HAPPENS AT THE END OF THE TURN
@@ -108,6 +132,7 @@ func end_move_state() -> void:
 	pass
 	
 func reset_state_stuff() -> void:
+	reset_outline()
 	pass
 
 func damage(amount):

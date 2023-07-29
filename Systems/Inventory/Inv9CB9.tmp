@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2ji1pnq5cjtc"]
+
+[ext_resource type="Script" path="res://Systems/Inventory/Inventory.gd" id="1_atn56"]
+
+[node name="Inventory" type="Node2D"]
+script = ExtResource("1_atn56")
+slots = Array[Resource("res://Systems/Inventory/InventorySlot.gd")]([null])

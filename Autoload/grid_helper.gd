@@ -15,3 +15,6 @@ func is_valid_movement(tilemap:TileMap, target_pos:Vector2, current_pos:Vector2)
 			return false
 		else:
 			return true
+
+func get_movement_direction(tilemap:TileMap, target_pos:Vector2, current_pos:Vector2) -> Vector2i:
+	return target_pos - current_pos

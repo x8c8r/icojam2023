@@ -73,10 +73,9 @@ func compute_stats():
 	hp = level
 
 func take_damage(amount):
-	#print("ow")
-	hp -= 1
+	print("ow")
+	hp -= amount
 	if hp <= 0:
-		var newEnemyList = []
 #		EnemiesManager.enemies = EnemiesManager.enemies_targets[EnemiesManager.enemies_targets.find(self)]
 		$warning.hide()
 		EnemiesManager.enemies = EnemiesManager.enemies.filter(func(val): return val != self)

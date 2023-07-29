@@ -1,44 +1,19 @@
 [gd_scene load_steps=6 format=3 uid="uid://b2ji1pnq5cjtc"]
 
-[ext_resource type="Script" path="res://DB/Items/base_sword.gd" id="1_2p4sd"]
-[ext_resource type="Script" path="res://Systems/Inventory/InventorySlot.gd" id="2_dbun8"]
+[ext_resource type="Script" path="res://Systems/Inventory/Inventory.gd" id="1_atn56"]
+[ext_resource type="Script" path="res://DB/Items/base_sword.gd" id="2_egswn"]
+[ext_resource type="Script" path="res://Systems/Inventory/InventorySlot.gd" id="3_4oib4"]
 
-[sub_resource type="GDScript" id="GDScript_6nl4w"]
-script/source = "extends Node2D
-
-@export var slots:Array[InventorySlot] = []
-
-func get_weapon() -> Item:
-	for slot in slots:
-		if slot.item is BaseSword:
-			return slot.item
-	return null
-
-@export var selected_slot:int = 0
-
-func _process(delta):
-	if Input.is_action_just_pressed(\"inventory_scroll\"):
-		if (selected_slot > len(slots)-1):
-			selected_slot = 0
-		else:
-			selected_slot += 1
-		if (selected_slot < 0):
-			selected_slot = len(slots)-1
-			
-func use_item() -> void:
-	slots[selected_slot].item.use_item(Vector2.ZERO)
-"
-
-[sub_resource type="Resource" id="Resource_yswqw"]
-script = ExtResource("1_2p4sd")
-title = "THE FUCKIKNG SWORD"
+[sub_resource type="Resource" id="Resource_y7upl"]
+script = ExtResource("2_egswn")
+title = ""
 description = ""
 max_amount = 1
 
-[sub_resource type="Resource" id="Resource_lnfxs"]
-script = ExtResource("2_dbun8")
-item = SubResource("Resource_yswqw")
+[sub_resource type="Resource" id="Resource_xmjbk"]
+script = ExtResource("3_4oib4")
+item = SubResource("Resource_y7upl")
 
 [node name="Inventory" type="Node2D"]
-script = SubResource("GDScript_6nl4w")
-slots = Array[ExtResource("2_dbun8")]([SubResource("Resource_lnfxs")])
+script = ExtResource("1_atn56")
+slots = Array[ExtResource("3_4oib4")]([SubResource("Resource_xmjbk")])

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0g5g5d5km30u"]
+[gd_scene load_steps=5 format=3 uid="uid://c0g5g5d5km30u"]
 
 [ext_resource type="Script" path="res://Objects/Player/player.gd" id="1_2yoxu"]
 [ext_resource type="Texture2D" uid="uid://beggbbag05fqs" path="res://billyidea1.png" id="2_ctywt"]
 [ext_resource type="Texture2D" uid="uid://bpdw2jayuq7av" path="res://grid_outline.png" id="3_8ispr"]
+[ext_resource type="PackedScene" uid="uid://d3e1iw71wr0yg" path="res://Objects/outline.tscn" id="4_c6xlp"]
 
 [node name="player" type="Node2D" groups=["Player"]]
 script = ExtResource("1_2yoxu")
@@ -11,22 +12,41 @@ script = ExtResource("1_2yoxu")
 texture_filter = 1
 texture = ExtResource("2_ctywt")
 
-[node name="Icon" type="Sprite2D" parent="."]
+[node name="ROut" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(64, 0)
 texture = ExtResource("3_8ispr")
 
-[node name="Icon2" type="Sprite2D" parent="."]
+[node name="LOut" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(-64, 0)
 texture = ExtResource("3_8ispr")
 
-[node name="Icon3" type="Sprite2D" parent="."]
+[node name="DOut" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(0, 64)
 texture = ExtResource("3_8ispr")
 
-[node name="Icon4" type="Sprite2D" parent="."]
+[node name="UOut" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(0, -64)
 texture = ExtResource("3_8ispr")
+
+[node name="R_Out" parent="." instance=ExtResource("4_c6xlp")]
+position = Vector2(64, 0)
+direction = Vector2i(1, 0)
+
+[node name="L_Out" parent="." instance=ExtResource("4_c6xlp")]
+position = Vector2(-64, 0)
+direction = Vector2i(-1, 0)
+
+[node name="U_Out" parent="." instance=ExtResource("4_c6xlp")]
+position = Vector2(0, -64)
+
+[node name="D_Out" parent="." instance=ExtResource("4_c6xlp")]
+position = Vector2(0, 64)
+direction = Vector2i(0, 1)
