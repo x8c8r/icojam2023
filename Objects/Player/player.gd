@@ -18,6 +18,7 @@ func color_outline() -> void:
 				out.modulate = Color.GREEN
 
 func move_outline(target_pos:Vector2) -> void:
+	pass
 	$Icon.visible = GridHelper.is_valid_movement($"../Collision", GridHelper.get_cell_pos_in_tilemap($"../Collision", position)+Vector2i.RIGHT, GridHelper.get_cell_pos_in_tilemap($"../Collision", position))
 	$Icon2.visible = GridHelper.is_valid_movement($"../Collision", GridHelper.get_cell_pos_in_tilemap($"../Collision", position)+Vector2i.LEFT, GridHelper.get_cell_pos_in_tilemap($"../Collision", position))
 	$Icon3.visible = GridHelper.is_valid_movement($"../Collision", GridHelper.get_cell_pos_in_tilemap($"../Collision", position)+Vector2i.DOWN, GridHelper.get_cell_pos_in_tilemap($"../Collision", position))
@@ -57,7 +58,6 @@ func state_change() -> void:
 	else:
 		current_state = entityState.ATTACK
 	
-	print("Changed state to: ", str(current_state))
 			
 func attack_state() -> void:
 	super()
@@ -69,7 +69,6 @@ func move_state() -> void:
 		var pos = GridHelper.get_cell_pos_in_tilemap(tilemap, get_viewport().get_mouse_position())
 		
 		if GridHelper.is_valid_movement(tilemap,GridHelper.get_cell_pos_in_tilemap(tilemap, position),pos):
-			print("its valid")
 			move_tile_target = pos		
 	pass
 	

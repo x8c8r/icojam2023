@@ -15,3 +15,6 @@ func turn_end() -> void:
 func _on_timer_timeout():
 	turn_end()
 	pass
+
+func _ready():
+	randomize()
