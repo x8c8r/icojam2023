@@ -7,7 +7,7 @@ var inputs:Dictionary
 # MOVEMENT
 var move_tile_target:Vector2
 var prev_move_tile_target:Vector2 = move_tile_target
-	
+
 ## OUTLINE
 @onready var outlines:Array = [$Icon, $Icon2, $Icon3, $Icon4]
 func color_outline() -> void:
@@ -18,11 +18,10 @@ func color_outline() -> void:
 				out.modulate = Color.GREEN
 
 func move_outline(target_pos:Vector2) -> void:
-	pass
-	#$Icon.visible = GridHelper.is_valid_movement($"../Collision", GridHelper.get_cell_pos_in_tilemap($"../Collision", position)+Vector2i.RIGHT, GridHelper.get_cell_pos_in_tilemap($"../Collision", position))
-	#$Icon2.visible = GridHelper.is_valid_movement($"../Collision", GridHelper.get_cell_pos_in_tilemap($"../Collision", position)+Vector2i.LEFT, GridHelper.get_cell_pos_in_tilemap($"../Collision", position))
-	#$Icon3.visible = GridHelper.is_valid_movement($"../Collision", GridHelper.get_cell_pos_in_tilemap($"../Collision", position)+Vector2i.DOWN, GridHelper.get_cell_pos_in_tilemap($"../Collision", position))
-	#$Icon4.visible = GridHelper.is_valid_movement($"../Collision", GridHelper.get_cell_pos_in_tilemap($"../Collision", position)+Vector2i.UP, GridHelper.get_cell_pos_in_tilemap($"../Collision", position))
+	$Icon.visible = GridHelper.is_valid_movement($"../Collision", GridHelper.get_cell_pos_in_tilemap($"../Collision", position)+Vector2i.RIGHT, GridHelper.get_cell_pos_in_tilemap($"../Collision", position))
+	$Icon2.visible = GridHelper.is_valid_movement($"../Collision", GridHelper.get_cell_pos_in_tilemap($"../Collision", position)+Vector2i.LEFT, GridHelper.get_cell_pos_in_tilemap($"../Collision", position))
+	$Icon3.visible = GridHelper.is_valid_movement($"../Collision", GridHelper.get_cell_pos_in_tilemap($"../Collision", position)+Vector2i.DOWN, GridHelper.get_cell_pos_in_tilemap($"../Collision", position))
+	$Icon4.visible = GridHelper.is_valid_movement($"../Collision", GridHelper.get_cell_pos_in_tilemap($"../Collision", position)+Vector2i.UP, GridHelper.get_cell_pos_in_tilemap($"../Collision", position))
 
 # LOOP
 func check_inputs() -> Dictionary:
@@ -34,8 +33,6 @@ func check_inputs() -> Dictionary:
 func handle_inputs(inputs:Dictionary) -> void:
 	if inputs.switch_state:
 		state_change()
-		
-	pass
 
 func _process(delta:float):
 	inputs = check_inputs()
@@ -61,13 +58,6 @@ func state_change() -> void:
 		current_state = entityState.ATTACK
 	
 	print("Changed state to: ", str(current_state))
-	
-func process_state() -> void: # ACTION THAT THE PLAYER CAN PERFORM BEFORE THE TURN ENDS
-	match current_state	:
-		entityState.MOVE:
-			move_state()
-		entityState.ATTACK:
-			attack_state()
 			
 func attack_state() -> void:
 	super()
@@ -78,8 +68,9 @@ func move_state() -> void:
 	if inputs.confirm_action:
 		var pos = GridHelper.get_cell_pos_in_tilemap(tilemap, get_viewport().get_mouse_position())
 		
-		#if GridHelper.is_valid_movement(tilemap,GridHelper.get_cell_pos_in_tilemap(tilemap, position),pos):
-			#move_tile_target = pos		
+		if GridHelper.is_valid_movement(tilemap,GridHelper.get_cell_pos_in_tilemap(tilemap, position),pos):
+			print("its valid")
+			move_tile_target = pos		
 	pass
 	
 func process_end_state() -> void: # THE ACTUAL ACTION THAT HAPPENS AT THE END OF THE TURN
