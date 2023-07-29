@@ -29,11 +29,12 @@ func process_end_state():
 		#print("warning")
 		if direction.length() < 1.2:
 			await get_tree().create_timer(.1).timeout
-			print("The enemy at " + str(position-player.position) + " Of you is attacking")
+			#print("The enemy at " + str(position-player.position) + " Of you is attacking")
 			player.damage(damage)
+			return
 		else:
 			$warning.hide()
-		return
+			return
 	if direction.length() < 1.2:
 		$warning.show()
 		return
@@ -72,13 +73,14 @@ func compute_stats():
 	hp = level
 
 func take_damage(amount):
+	#print("ow")
 	hp -= 1
 	if hp <= 0:
 		var newEnemyList = []
 #		EnemiesManager.enemies = EnemiesManager.enemies_targets[EnemiesManager.enemies_targets.find(self)]
 		$warning.hide()
 		EnemiesManager.enemies = EnemiesManager.enemies.filter(func(val): return val != self)
-		EnemiesManager.enemies = newEnemyList
+#		EnemiesManager.enemies = newEnemyList
 		await get_tree().process_frame
 		queue_free()
-		print("I'm fucked")
+		#print("I'm fucked")

@@ -29,9 +29,11 @@ func attack_enemy() -> void:
 	for target in targets:
 		for enemy in EnemiesManager.enemies:
 			#print(len(EnemiesManager.enemies))
+			print("umm")
 			if GridHelper.get_cell_pos_in_tilemap(player.tilemap, enemy.position) == target:
 #				print("found a fucker")
 #				print(en)
+				
 				enemy.take_damage(GameManager.get_player().attack_damage)
 				#GameManager.emit_signal("turn_ended")
 				GameManager.get_player().change_state(GameManager.get_player().entityState.MOVE)
