@@ -31,5 +31,5 @@ func attack_enemy() -> void:
 			#print(len(EnemiesManager.enemies))
 			print("umm")
 			if GridHelper.get_cell_pos_in_tilemap(player.tilemap, enemy.position) == target:				
-				enemy.take_damage(GameManager.get_player().attack_damage)
+				enemy.damage(GameManager.get_player().attack_damage)
 	

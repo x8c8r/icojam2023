@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://b2ji1pnq5cjtc"]
 
 [ext_resource type="Script" path="res://Systems/Inventory/Inventory.gd" id="1_atn56"]
+[ext_resource type="Script" path="res://DB/Items/Weapons/base_sword.gd" id="2_ir6jl"]
 [ext_resource type="Script" path="res://Systems/Inventory/InventorySlot.gd" id="3_4oib4"]
-[ext_resource type="Script" path="res://DB/Items/Weapons/big_sword.gd" id="4_tcae1"]
 [ext_resource type="Script" path="res://DB/Items/Items/HealthPotion.gd" id="4_yw5f7"]
 
 [sub_resource type="Resource" id="Resource_vcqd0"]
@@ -17,8 +17,8 @@ expendable = true
 script = ExtResource("3_4oib4")
 item = SubResource("Resource_vcqd0")
 
-[sub_resource type="Resource" id="Resource_pmidr"]
-script = ExtResource("4_tcae1")
+[sub_resource type="Resource" id="Resource_pd3al"]
+script = ExtResource("2_ir6jl")
 title = ""
 description = ""
 max_amount = 1
@@ -26,7 +26,7 @@ expendable = false
 
 [sub_resource type="Resource" id="Resource_2x82u"]
 script = ExtResource("3_4oib4")
-item = SubResource("Resource_pmidr")
+item = SubResource("Resource_pd3al")
 
 [node name="Inventory" type="Node2D"]
 script = ExtResource("1_atn56")
