@@ -135,8 +135,6 @@ func reset_state_stuff() -> void:
 	reset_outline()
 	pass
 
-func damage(amount):
-	hp -= amount
-	if hp <= 0:
-		get_tree().reload_current_scene()
-	#print("wow motherfucker you did " + str(amount) + " hp! I have " +str(hp))
+func die():
+	get_tree().reload_current_scene()
+	super()

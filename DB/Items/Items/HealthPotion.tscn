@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://lsv7q1cfgon1"]
+
+[ext_resource type="Script" path="res://DB/Items/Items/HealthPotion.gd" id="1_jnigh"]
+
+[node name="HealthPotion" type="Node2D"]
+script = ExtResource("1_jnigh")
+expendable = true

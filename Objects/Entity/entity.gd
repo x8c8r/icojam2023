@@ -67,3 +67,17 @@ func end_turn() -> void:
 	#print_debug("END OF A TURN")
 	process_end_state()
 	reset_state_stuff()
+	
+# Health
+func heal(amount:int):
+	hp += amount
+	if hp > base_hp:
+		hp = base_hp
+
+func damage(amount:int):
+	hp -= amount
+	if hp < 0:
+		die()
+	
+func die():
+	queue_free()

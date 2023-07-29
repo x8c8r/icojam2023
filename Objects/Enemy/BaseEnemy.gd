@@ -2,7 +2,7 @@ class_name BaseEnemy extends Entity
 
 @export var level:int = 1
 @export var max_tile_per_turn:int = 1
-@export var damage:int = 1
+@export var attack_damage:int = 1
 @export var tile_size = 64
 
 # MOVEMENT
@@ -30,7 +30,7 @@ func process_end_state():
 		if direction.length() < 1.2:
 			await get_tree().create_timer(.1).timeout
 			#print("The enemy at " + str(position-player.position) + " Of you is attacking")
-			player.damage(damage)
+			player.damage(attack_damage)
 			return
 		else:
 			$warning.hide()
@@ -69,17 +69,12 @@ func process_end_state():
 		$warning.hide()
 
 func compute_stats():
-	damage = level + 1
+	attack_damage = level + 1
 	hp = level
 
-func take_damage(amount):
-	print("ow")
-	hp -= amount
-	if hp <= 0:
-#		EnemiesManager.enemies = EnemiesManager.enemies_targets[EnemiesManager.enemies_targets.find(self)]
-		$warning.hide()
-		EnemiesManager.enemies = EnemiesManager.enemies.filter(func(val): return val != self)
-#		EnemiesManager.enemies = newEnemyList
-		await get_tree().process_frame
-		queue_free()
-		#print("I'm fucked")
+func die():
+	$warning.hide()
+	EnemiesManager.enemies = EnemiesManager.enemies.filter(func(val): return val != self)
+	await get_tree().process_frame
+	
+	super()

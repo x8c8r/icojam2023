@@ -19,5 +19,12 @@ func _process(delta):
 		if (selected_slot < 0):
 			selected_slot = len(slots)-1
 			
+	if Input.is_action_just_pressed("inventory_use_item"):
+		use_item()
+			
 func use_item() -> void:
-	slots[selected_slot].item.use_item(Vector2.ZERO)
+	var item = slots[selected_slot].item
+	if item:
+		slots[selected_slot].item.use_item(Vector2.ZERO)
+		if item.expendable:
+			slots[selected_slot].item = null
