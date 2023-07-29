@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://beggbbag05fqs" path="res://billyidea1.png" id="2_ctywt"]
 [ext_resource type="Texture2D" uid="uid://bpdw2jayuq7av" path="res://grid_outline.png" id="3_8ispr"]
 
-[node name="player" type="Node2D"]
+[node name="player" type="Node2D" groups=["Player"]]
 script = ExtResource("1_2yoxu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

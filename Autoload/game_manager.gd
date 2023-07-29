@@ -18,3 +18,9 @@ func _on_timer_timeout():
 
 func _ready():
 	randomize()
+
+func get_player():
+	return get_tree().get_first_node_in_group("Player")
+
+func get_collision():
+	return get_tree().get_first_node_in_group("CollisionTilemap")
