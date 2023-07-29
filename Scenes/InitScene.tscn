@@ -1,14 +1,9 @@
-<<<<<<< Updated upstream
 [gd_scene load_steps=7 format=3 uid="uid://c7i2je550pg0r"]
-=======
-[gd_scene load_steps=9 format=3 uid="uid://c7i2je550pg0r"]
->>>>>>> Stashed changes
 
 [ext_resource type="PackedScene" uid="uid://c0g5g5d5km30u" path="res://Objects/Player/player.tscn" id="2_pvvyv"]
 [ext_resource type="Texture2D" uid="uid://bjqwolyrs4mcu" path="res://Sprites/basictilesetresize.png" id="3_sk0pw"]
 [ext_resource type="PackedScene" uid="uid://rb23gg0owvx4" path="res://Objects/UI/UI.tscn" id="4_sh2uc"]
 [ext_resource type="PackedScene" uid="uid://bajdp7ktcxnb6" path="res://Objects/Enemy/BaseEnemy.tscn" id="4_vkt8n"]
-[ext_resource type="AudioStream" uid="uid://ddalsd4rkfv05" path="res://Game_jam_2023_soundtrack.mp3" id="6_su408"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_spaxg"]
 texture = ExtResource("3_sk0pw")
@@ -97,7 +92,3 @@ texture_filter = 1
 position = Vector2(96, 352)
 
 [node name="UI" parent="." instance=ExtResource("4_sh2uc")]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_su408")
-autoplay = true
