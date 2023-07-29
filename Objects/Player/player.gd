@@ -3,6 +3,9 @@ extends Node2D
 # INITIALIZATION
 var out = preload("res://Objects/outline.tscn")
 var outline = out.instantiate()
+
+@onready var tilemap:TileMap = get_tree().current_scene.get_node("Collision")
+
 func _ready():
 	GameManager.turn_ended.connect(end_turn)
 	get_tree().current_scene.add_child.call_deferred(outline)
@@ -13,24 +16,6 @@ var prev_move_tile_target:Vector2 = move_tile_target
 
 const MOVEMENT_SIZE = 64
 
-func get_cell_pos_in_tilemap(position:Vector2) -> Vector2i:
-	var tilemap:TileMap = get_tree().current_scene.get_node("Collision")
-	return tilemap.local_to_map(position)
-
-func check_movement(position:Vector2i) -> bool:
-	var tilemap:TileMap = get_tree().current_scene.get_node("Collision")
-	var cell_exists = tilemap.get_cell_tile_data(0, position)
-	var player_pos = get_cell_pos_in_tilemap(self.position)
-	if cell_exists: # There is a tile at that place
-		return false
-	else:
-		var v2_pos = Vector2(position)
-		var v2_pl_pos = Vector2(player_pos)
-		if v2_pos.distance_to(v2_pl_pos) > 1:
-			return false
-		else:
-			return true
-
 func move(target_pos:Vector2i) -> void:
 	var tilemap:TileMap = get_tree().current_scene.get_node("Collision")
 	var pos = tilemap.map_to_local(target_pos)
@@ -38,7 +23,7 @@ func move(target_pos:Vector2i) -> void:
 	
 ## OUTLINE
 func move_outline(target_pos:Vector2) -> void:
-	outline.position = get_cell_pos_in_tilemap(target_pos)*64
+	outline.position = GridHelper.get_cell_pos_in_tilemap(tilemap, target_pos)*64
 
 # LOOP
 func check_inputs() -> Dictionary:
@@ -94,12 +79,10 @@ func attack_state(inputs:Dictionary) -> void:
 	
 func move_state(inputs:Dictionary) -> void:
 	if inputs.confirm_action:
-		var pos = get_cell_pos_in_tilemap(get_viewport().get_mouse_position())
-		if check_movement(pos):
-			move_tile_target = pos
-			
-			
+		var pos = GridHelper.get_cell_pos_in_tilemap(tilemap, get_viewport().get_mouse_position())
 		
+		if GridHelper.is_valid_movement(tilemap,position,pos):
+			move_tile_target = pos		
 	pass
 	
 func process_end_state() -> void: # THE ACTUAL ACTION THAT HAPPENS AT THE END OF THE TURN
@@ -120,8 +103,6 @@ func end_move_state() -> void:
 	pass
 	
 func reset_state_stuff() -> void:
-	# MOVEMENT
-	current_state = playerState.MOVE
 	pass
 	
 # END OF TURN
