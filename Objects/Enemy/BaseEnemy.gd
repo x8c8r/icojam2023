@@ -16,16 +16,23 @@ func _ready():
 		EnemiesManager.enemies[len(EnemiesManager.enemies)] = self
 
 func process_end_state():
-	print("wtf")
 	super()
+	
+	
 	var collision = GameManager.get_collision()
 	var player = GameManager.get_player()
 	var tile_player_pos: Vector2i = GridHelper.get_cell_pos_in_tilemap(collision, player.position)
 	var tile_pos = GridHelper.get_cell_pos_in_tilemap(collision, position)
 	var direction = tile_player_pos - tile_pos
+	if $warning.visible:
+		if direction.length() < 1.2:
+			print("get fucked")
+			player.damage(damage)
+		else:
+			$warning.hide()
+		return
 	if direction.length() < 1.2:
-		print("get fucked")
-		player.damage(damage)
+		$warning.show()
 		return
 	elif tile_player_pos.x != tile_pos.x and tile_player_pos.y != tile_pos.y:
 		print("xy")
@@ -40,16 +47,21 @@ func process_end_state():
 			EnemiesManager.enemies_targets[self] = Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos
 			move(Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos)
 			print("->y")
+		
 
 	elif tile_player_pos.x != tile_pos.x and not Vector2i(clamp(direction.x, -1, 1), 0) + tile_pos in EnemiesManager.enemies_targets.values():
+		
 		EnemiesManager.enemies_targets[self] = Vector2i(clamp(direction.x, -1, 1), 0) + tile_pos
 		print("x")
 		move(Vector2i(clamp(direction.x, -1, 1), 0) + tile_pos)
 	elif tile_player_pos.y != tile_pos.y and not Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos in EnemiesManager.enemies_targets.values():
+		
 		EnemiesManager.enemies_targets[self] = Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos
 		print("y")
 		move(Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos)
 
+	else:
+		$warning.hide()
 
 func compute_stats():
 	damage = level + 1

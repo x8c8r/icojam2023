@@ -107,7 +107,7 @@ func reset_state_stuff() -> void:
 	pass
 
 func damage(amount):
-	print("wow motherfucker you did " + str(amount) + " hp!")
-	hp -= 1
+	hp -= amount
 	if hp <= 0:
 		get_tree().reload_current_scene()
+	print("wow motherfucker you did " + str(amount) + " hp! I have " +str(hp))

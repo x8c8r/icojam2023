@@ -90,8 +90,5 @@ position = Vector2(224, 224)
 [node name="BaseEnemy" parent="." instance=ExtResource("4_vkt8n")]
 texture_filter = 1
 position = Vector2(96, 224)
-level = 1
-max_tile_per_turn = 1
-damage = 1
 
 [node name="UI" parent="." instance=ExtResource("4_sh2uc")]
