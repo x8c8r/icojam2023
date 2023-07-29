@@ -5,6 +5,8 @@ extends Entity
 var inputs:Dictionary
 
 # MOVEMENT
+# get_cell_pos_in_tilemap
+
 var move_tile_target:Vector2
 var prev_move_tile_target:Vector2 = move_tile_target
 @export var attack_damage = 5

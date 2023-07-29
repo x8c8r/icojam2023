@@ -1,6 +1,7 @@
 extends Node
 
 func get_cell_pos_in_tilemap(tilemap:TileMap, position:Vector2) -> Vector2i:
+	#print(tilemap)
 	return tilemap.local_to_map(position)
 	
 func get_cell_pos_in_world(tilemap:TileMap, position:Vector2) -> Vector2i:
