@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7i2je550pg0r"]
+[gd_scene load_steps=7 format=3 uid="uid://c7i2je550pg0r"]
 
 [ext_resource type="Script" path="res://Systems/Inventory/inventory.gd" id="1_uwmls"]
 [ext_resource type="PackedScene" uid="uid://c0g5g5d5km30u" path="res://Objects/Player/player.tscn" id="2_pvvyv"]
 [ext_resource type="Texture2D" uid="uid://bjqwolyrs4mcu" path="res://Sprites/basictilesetresize.png" id="3_sk0pw"]
+[ext_resource type="PackedScene" uid="uid://rb23gg0owvx4" path="res://Objects/UI/UI.tscn" id="4_sh2uc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_spaxg"]
 texture = ExtResource("3_sk0pw")
@@ -83,3 +84,5 @@ layer_0/tile_data = PackedInt32Array(196609, 65536, 4, 131073, 65536, 3, 65537, 
 
 [node name="player" parent="." instance=ExtResource("2_pvvyv")]
 position = Vector2(223, 223)
+
+[node name="UI" parent="." instance=ExtResource("4_sh2uc")]

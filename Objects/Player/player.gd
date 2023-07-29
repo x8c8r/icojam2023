@@ -1,14 +1,10 @@
 extends Node2D
 
 # INITIALIZATION
-var out = preload("res://Objects/outline.tscn")
-var outline = out.instantiate()
-
 @onready var tilemap:TileMap = get_tree().current_scene.get_node("Collision")
 
 func _ready():
 	GameManager.turn_ended.connect(end_turn)
-	get_tree().current_scene.add_child.call_deferred(outline)
 
 # MOVEMENT
 var move_tile_target:Vector2
@@ -22,7 +18,14 @@ func move(target_pos:Vector2i) -> void:
 	position = pos
 	
 ## OUTLINE
-## OUTLINE
+@onready var outlines:Array = [$Icon, $Icon2, $Icon3, $Icon4]
+func color_outline() -> void:
+	match get_current_state():
+		playerState.MOVE:
+			for n in len(outlines):
+				var out:Sprite2D = outlines[n]
+				out.modulate = Color.GREEN
+
 func move_outline(target_pos:Vector2) -> void:
 	$Icon.visible = GridHelper.is_valid_movement($"../Collision", GridHelper.get_cell_pos_in_tilemap($"../Collision", position)+Vector2i.RIGHT, GridHelper.get_cell_pos_in_tilemap($"../Collision", position))
 	$Icon2.visible = GridHelper.is_valid_movement($"../Collision", GridHelper.get_cell_pos_in_tilemap($"../Collision", position)+Vector2i.LEFT, GridHelper.get_cell_pos_in_tilemap($"../Collision", position))
@@ -47,6 +50,8 @@ func _process(delta:float):
 	
 	handle_inputs(inputs)
 	process_state(inputs)
+	
+	color_outline()
 	move_outline(get_viewport().get_mouse_position())
 	
 # STATES
