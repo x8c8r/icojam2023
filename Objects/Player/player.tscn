@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0g5g5d5km30u"]
+[gd_scene load_steps=4 format=3 uid="uid://c0g5g5d5km30u"]
 
 [ext_resource type="Script" path="res://Objects/Player/player.gd" id="1_2yoxu"]
 [ext_resource type="Texture2D" uid="uid://cx1v44qv0wmas" path="res://Sprites/pixilart-drawing.png" id="2_oowfy"]
+[ext_resource type="Texture2D" uid="uid://b3w8xfpwpr47e" path="res://icon.svg" id="3_4ln34"]
 
 [node name="player" type="Node2D"]
 script = ExtResource("1_2yoxu")
@@ -9,3 +10,23 @@ script = ExtResource("1_2yoxu")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_oowfy")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(64, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_4ln34")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(-64, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_4ln34")
+
+[node name="Icon3" type="Sprite2D" parent="."]
+position = Vector2(0, 64)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_4ln34")
+
+[node name="Icon4" type="Sprite2D" parent="."]
+position = Vector2(0, -64)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_4ln34")

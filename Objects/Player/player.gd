@@ -22,8 +22,12 @@ func move(target_pos:Vector2i) -> void:
 	position = pos
 	
 ## OUTLINE
+## OUTLINE
 func move_outline(target_pos:Vector2) -> void:
-	outline.position = GridHelper.get_cell_pos_in_tilemap(tilemap, target_pos)*64
+	$Icon.visible = GridHelper.is_valid_movement($"../Collision", GridHelper.get_cell_pos_in_tilemap($"../Collision", position)+Vector2i.RIGHT, GridHelper.get_cell_pos_in_tilemap($"../Collision", position))
+	$Icon2.visible = GridHelper.is_valid_movement($"../Collision", GridHelper.get_cell_pos_in_tilemap($"../Collision", position)+Vector2i.LEFT, GridHelper.get_cell_pos_in_tilemap($"../Collision", position))
+	$Icon3.visible = GridHelper.is_valid_movement($"../Collision", GridHelper.get_cell_pos_in_tilemap($"../Collision", position)+Vector2i.DOWN, GridHelper.get_cell_pos_in_tilemap($"../Collision", position))
+	$Icon4.visible = GridHelper.is_valid_movement($"../Collision", GridHelper.get_cell_pos_in_tilemap($"../Collision", position)+Vector2i.UP, GridHelper.get_cell_pos_in_tilemap($"../Collision", position))
 
 # LOOP
 func check_inputs() -> Dictionary:
@@ -81,7 +85,7 @@ func move_state(inputs:Dictionary) -> void:
 	if inputs.confirm_action:
 		var pos = GridHelper.get_cell_pos_in_tilemap(tilemap, get_viewport().get_mouse_position())
 		
-		if GridHelper.is_valid_movement(tilemap,position,pos):
+		if GridHelper.is_valid_movement(tilemap,GridHelper.get_cell_pos_in_tilemap(tilemap, position),pos):
 			move_tile_target = pos		
 	pass
 	
