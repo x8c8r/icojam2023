@@ -10,15 +10,17 @@ var move_tile_target:Vector2
 var prev_move_tile_target:Vector2 = move_tile_target
 
 func process_end_state():
+	print("wtf")
+	super()
 	var collision = GameManager.get_collision()
 	var player = GameManager.get_player()
 	var tile_player_pos: Vector2i = GridHelper.get_cell_pos_in_tilemap(collision, player.position)
 	var tile_pos = GridHelper.get_cell_pos_in_tilemap(collision, position)
 	var direction = tile_player_pos - tile_pos
-
-	print(direction.length())
 	if direction.length() < 1.2:
-		move(tile_player_pos)
+		print("get fucked")
+		player.damage(damage)
+		return
 	elif tile_player_pos.x != tile_pos.x and tile_player_pos.y != tile_pos.y:
 		print("xy")
 		var rand = randf()
@@ -41,3 +43,16 @@ func process_end_state():
 		EnemiesManager.enemies_targets[self] = Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos
 		print("y")
 		move(Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos)
+
+func _ready():
+	compute_stats()
+
+func compute_stats():
+	damage = level + 1
+	hp = level+1
+
+func take_damage(amount):
+	print("ow motherfucker you did " + amount + " hp!")
+	hp -= 1
+	if hp <= 0:
+		queue_free()

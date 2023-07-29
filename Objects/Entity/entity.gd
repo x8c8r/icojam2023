@@ -62,6 +62,6 @@ func reset_state_stuff() -> void:
 	
 # END OF TURN
 func end_turn() -> void:
-	print("END OF A TURN")
+	print_debug("END OF A TURN")
 	process_end_state()
 	reset_state_stuff()

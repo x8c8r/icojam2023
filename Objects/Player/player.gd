@@ -95,3 +95,9 @@ func end_move_state() -> void:
 	
 func reset_state_stuff() -> void:
 	pass
+
+func damage(amount):
+	print("ow motherfucker you did " + amount + " hp!")
+	hp -= 1
+	if hp <= 0:
+		get_tree().reload_current_scene()
