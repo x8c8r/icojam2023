@@ -58,7 +58,7 @@ func process_end_state():
 		move(Vector2i(clamp(direction.x, -1, 1), 0) + tile_pos)
 	elif tile_player_pos.y != tile_pos.y and not EnemiesManager.enemies_targets.has(Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos):
 		
-		EnemiesManager.enemies_targets[enemy_target] = Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos
+		EnemiesManager.enemies_targets.append(Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos)
 		#print("y")
 		move(Vector2i(0, clamp(direction.y, -1, 1)) + tile_pos)
 
@@ -73,7 +73,7 @@ func take_damage(amount):
 	hp -= 1
 	if hp <= 0:
 		var newEnemyList = []
-		EnemiesManager.enemies = EnemiesManager.enemies_targets.filter(func(val): return val != self)
+		EnemiesManager.enemies = EnemiesManager.enemies_targets[EnemiesManager.enemies_targets.find(self)]
 		EnemiesManager.enemies = EnemiesManager.enemies.filter(func(val): return val != self)
 		
 		EnemiesManager.enemies = newEnemyList
