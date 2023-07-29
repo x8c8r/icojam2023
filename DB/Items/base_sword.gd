@@ -23,6 +23,6 @@ func use_item(direction:Vector2i) -> void:
 				en.take_damage(GameManager.get_player().attack_damage)
 				GameManager.emit_signal("turn_ended")
 				GameManager.get_player().change_state(GameManager.get_player().entityState.MOVE)
-				print(GameManager.get_player().get_current_state())
+				#print(GameManager.get_player().get_current_state())
 	
 	
