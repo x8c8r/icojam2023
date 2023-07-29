@@ -26,8 +26,10 @@ func process_end_state():
 	var tile_pos = GridHelper.get_cell_pos_in_tilemap(collision, position)
 	var direction = tile_player_pos - tile_pos
 	if $warning.visible:
+		#print("warning")
 		if direction.length() < 1.2:
-			#print("get fucked")
+			await get_tree().create_timer(.1).timeout
+			print("The enemy at " + str(position-player.position) + " Of you is attacking")
 			player.damage(damage)
 		else:
 			$warning.hide()
@@ -73,8 +75,10 @@ func take_damage(amount):
 	hp -= 1
 	if hp <= 0:
 		var newEnemyList = []
-		EnemiesManager.enemies = EnemiesManager.enemies_targets[EnemiesManager.enemies_targets.find(self)]
+#		EnemiesManager.enemies = EnemiesManager.enemies_targets[EnemiesManager.enemies_targets.find(self)]
+		$warning.hide()
 		EnemiesManager.enemies = EnemiesManager.enemies.filter(func(val): return val != self)
-		
 		EnemiesManager.enemies = newEnemyList
+		await get_tree().process_frame
 		queue_free()
+		print("I'm fucked")
