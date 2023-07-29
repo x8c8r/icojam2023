@@ -12,17 +12,21 @@ texture_filter = 1
 texture = ExtResource("2_oowfy")
 
 [node name="Icon" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(64, 0)
 texture = ExtResource("3_8ispr")
 
 [node name="Icon2" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(-64, 0)
 texture = ExtResource("3_8ispr")
 
 [node name="Icon3" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(0, 64)
 texture = ExtResource("3_8ispr")
 
 [node name="Icon4" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(0, -64)
 texture = ExtResource("3_8ispr")

@@ -16,6 +16,10 @@ func color_outline() -> void:
 			for n in len(outlines):
 				var out:Sprite2D = outlines[n]
 				out.modulate = Color.GREEN
+		entityState.ATTACK:
+			for n in len(outlines):
+				var out:Sprite2D = outlines[n]
+				out.modulate = Color.YELLOW				
 
 func move_outline(target_pos:Vector2) -> void:
 	pass
