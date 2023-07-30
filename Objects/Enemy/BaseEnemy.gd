@@ -69,7 +69,7 @@ func process_end_state():
 		$warning.hide()
 
 func compute_stats():
-	attack_damage = level + 1
+	attack_damage = level
 	hp = level
 	#print("enemy hp:", hp)
 
@@ -78,6 +78,8 @@ func die():
 	EnemiesManager.enemies = EnemiesManager.enemies.filter(func(val): return val != self)
 	if EnemiesManager.enemies.is_empty():
 		GameManager.room += 1
+		$"../UI/FadeInOut/AnimationPlayer".play_backwards("FadeIn")
+		await $"../UI/FadeInOut/AnimationPlayer".animation_finished
 		get_tree().reload_current_scene()
 	await get_tree().process_frame
 	

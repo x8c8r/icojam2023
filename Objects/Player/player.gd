@@ -12,11 +12,11 @@ var prev_move_tile_target:Vector2 = move_tile_target
 @export var attack_damage = 5
 
 ## OUTLINE
-@onready var outlines:Array[Outline] = [$R_Out, $L_Out, $U_Out, $D_Out]
+@onready var outlines:Array[Node] = $Outlines.get_children()
 var cur_outline:Outline
 var last_outline:Outline
 	
-func color_outline() -> void:
+func colour_outline() -> void:
 	match get_current_state():
 		entityState.MOVE:
 			for n in len(outlines):
@@ -29,21 +29,13 @@ func color_outline() -> void:
 
 func move_outline(target_pos:Vector2) -> void:
 	for outline in outlines:
-		outline.update(target_pos, position)
+		outline.update(target_pos, position, current_state)
 
 func get_outline(dir:Vector2i) -> Outline:
-	match dir:
-		Vector2i.DOWN:
-			return $U_Out
-		Vector2i.UP:
-			return $D_Out
-		Vector2i.RIGHT:
-			return $L_Out
-		Vector2i.LEFT:
-			return $R_Out			
-		_:
-			return null
-			
+	for i in outlines:
+		if i.direction == dir:
+			return i
+	return
 func reset_outline() -> void:
 	if cur_outline:
 		cur_outline.selected = false
@@ -67,7 +59,7 @@ func _process(delta:float):
 	
 	super(delta)
 	
-	color_outline()
+	colour_outline()
 	move_outline(get_viewport().get_mouse_position())
 	
 # STATES
@@ -138,7 +130,7 @@ func end_move_state() -> void:
 	
 func reset_state_stuff() -> void:
 	reset_outline()
-	pass
+	current_state = entityState.MOVE
 	
 func damage(amount:int):
 	var shield = Inventory.get_item_by_type(Shield)

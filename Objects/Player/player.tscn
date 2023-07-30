@@ -36,17 +36,51 @@ texture_filter = 1
 position = Vector2(0, -64)
 texture = ExtResource("3_8ispr")
 
-[node name="R_Out" parent="." instance=ExtResource("4_c6xlp")]
-position = Vector2(64, 0)
+[node name="Outlines" type="Node2D" parent="."]
+
+[node name="R_Out" parent="Outlines" instance=ExtResource("4_c6xlp")]
+position = Vector2(65, 0)
 direction = Vector2i(1, 0)
 
-[node name="L_Out" parent="." instance=ExtResource("4_c6xlp")]
-position = Vector2(-64, 0)
+[node name="L_Out" parent="Outlines" instance=ExtResource("4_c6xlp")]
+position = Vector2(-65, 0)
 direction = Vector2i(-1, 0)
 
-[node name="U_Out" parent="." instance=ExtResource("4_c6xlp")]
-position = Vector2(0, -64)
+[node name="U_Out" parent="Outlines" instance=ExtResource("4_c6xlp")]
+position = Vector2(0, -65)
 
-[node name="D_Out" parent="." instance=ExtResource("4_c6xlp")]
-position = Vector2(0, 64)
+[node name="D_Out" parent="Outlines" instance=ExtResource("4_c6xlp")]
+position = Vector2(0, 65)
 direction = Vector2i(0, 1)
+
+[node name="R_Out2" parent="Outlines" instance=ExtResource("4_c6xlp")]
+position = Vector2(66, 66)
+direction = Vector2i(1, 1)
+
+[node name="L_Out2" parent="Outlines" instance=ExtResource("4_c6xlp")]
+position = Vector2(-66, -66)
+direction = Vector2i(-1, -1)
+
+[node name="U_Out2" parent="Outlines" instance=ExtResource("4_c6xlp")]
+position = Vector2(66, -66)
+direction = Vector2i(1, -1)
+
+[node name="D_Out2" parent="Outlines" instance=ExtResource("4_c6xlp")]
+position = Vector2(-66, 66)
+direction = Vector2i(-1, 1)
+
+[node name="R_Out3" parent="Outlines" instance=ExtResource("4_c6xlp")]
+position = Vector2(130, 0)
+direction = Vector2i(2, 0)
+
+[node name="L_Out3" parent="Outlines" instance=ExtResource("4_c6xlp")]
+position = Vector2(-130, 0)
+direction = Vector2i(-2, 0)
+
+[node name="U_Out3" parent="Outlines" instance=ExtResource("4_c6xlp")]
+position = Vector2(0, -130)
+direction = Vector2i(0, -2)
+
+[node name="D_Out3" parent="Outlines" instance=ExtResource("4_c6xlp")]
+position = Vector2(0, 130)
+direction = Vector2i(0, 2)
