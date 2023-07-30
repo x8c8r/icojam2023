@@ -61,6 +61,7 @@ func handle_inputs(inputs:Dictionary) -> void:
 		state_change()
 
 func _process(delta:float):
+	#print(tilemap)
 	inputs = check_inputs()
 	handle_inputs(inputs)
 	
@@ -104,6 +105,7 @@ func attack_state() -> void:
 func move_state() -> void:
 	super()
 	if inputs.confirm_action:
+		print(tilemap)
 		var pos = GridHelper.get_cell_pos_in_tilemap(tilemap, get_viewport().get_mouse_position())
 		
 		if GridHelper.is_valid_movement(tilemap,GridHelper.get_cell_pos_in_tilemap(tilemap, position),pos):

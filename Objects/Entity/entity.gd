@@ -12,9 +12,10 @@ func _ready():
 	#print(tilemap.local_to_map(position))
 func _process(delta):
 	process_state()
-	print(tilemap)
+	#print(tilemap)
 	
 func move(target_pos:Vector2i) -> void:
+	#print(tilemap)
 	var pos = GridHelper.get_cell_pos_in_world(tilemap, target_pos)
 	position = pos
 
