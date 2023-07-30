@@ -6,6 +6,8 @@ var enemies_pos = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	room_number = GameManager.room
+	print(room_number)
 	randomize()
 	var number: int
 	var level: int

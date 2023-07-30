@@ -71,11 +71,14 @@ func process_end_state():
 func compute_stats():
 	attack_damage = level + 1
 	hp = level
-	print("enemy hp:", hp)
+	#print("enemy hp:", hp)
 
 func die():
 	$warning.hide()
 	EnemiesManager.enemies = EnemiesManager.enemies.filter(func(val): return val != self)
+	if EnemiesManager.enemies.is_empty():
+		GameManager.room += 1
+		get_tree().reload_current_scene()
 	await get_tree().process_frame
 	
 	super()
