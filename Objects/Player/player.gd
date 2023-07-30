@@ -144,11 +144,11 @@ func damage(amount:int):
 	#print(hp)
 
 func die():
-	GameManager.room = 1
-	get_tree().reload_current_scene()
+	print(GameManager.room)
+	get_tree().change_scene_to_file("res://you_died.tscn")
 	super()
 
 func _ready():
 	super()
 	hp = GameManager.health
-	print(hp)
+	#print(GameManager.room)
