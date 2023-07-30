@@ -18,13 +18,14 @@ func get_item_by_type(type:Variant) -> Array:
 
 @export var selected_slot:int = 0
 func _ready():
+	print(len(slots))
 	add_item(BaseSword.new(), false)
-	add_item(HealthPotion.new(), true)
-	add_item(Shield.new(), true)
+	for i in range(3):
+		add_item(HealthPotion.new(), true)
 
 func _process(delta):
 	if Input.is_action_just_pressed("inventory_scroll"):
-		if (selected_slot > len(slots)-1):
+		if (selected_slot > len(slots)-2):
 			selected_slot = 0
 		else:
 			selected_slot += 1
@@ -43,6 +44,5 @@ func add_item(item:Item, expendable:bool):
 			
 func use_item() -> void:
 	var item = slots[selected_slot].item
-	print("sex")
 	if item:
 		item.use_item(Vector2.ZERO, slots[selected_slot])
