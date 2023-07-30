@@ -151,5 +151,6 @@ func damage(amount:int):
 	print(hp)
 
 func die():
+	GameManager.room = 1
 	get_tree().reload_current_scene()
 	super()

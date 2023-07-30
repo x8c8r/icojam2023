@@ -31,7 +31,7 @@ func attack_enemy() -> void:
 	for target in targets:
 		for enemy in EnemiesManager.enemies:
 			#print(len(EnemiesManager.enemies))
-			print("umm")
+			#print("umm")
 			if GridHelper.get_cell_pos_in_tilemap(player.tilemap, enemy.position) == target:				
 				enemy.damage(GameManager.get_player().attack_damage)
 	
