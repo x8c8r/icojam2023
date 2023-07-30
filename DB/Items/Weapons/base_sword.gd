@@ -2,7 +2,9 @@ class_name BaseSword extends Item
 var targets:Array[Vector2i] = []
 var player
 
-func use_item(direction:Vector2i) -> void:
+func use_item(direction:Vector2i, slot:InventorySlot) -> void:
+	super(direction, slot)
+	
 	targets = []
 	if !GameManager.turn_ended.is_connected(attack_enemy):
 		GameManager.turn_ended.connect(attack_enemy)

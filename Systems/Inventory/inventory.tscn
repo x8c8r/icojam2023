@@ -1,33 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://b2ji1pnq5cjtc"]
+[gd_scene load_steps=6 format=3 uid="uid://b2ji1pnq5cjtc"]
 
 [ext_resource type="Script" path="res://Systems/Inventory/Inventory.gd" id="1_atn56"]
-[ext_resource type="Script" path="res://DB/Items/Weapons/base_sword.gd" id="2_ir6jl"]
 [ext_resource type="Script" path="res://Systems/Inventory/InventorySlot.gd" id="3_4oib4"]
-[ext_resource type="Script" path="res://DB/Items/Items/HealthPotion.gd" id="4_yw5f7"]
 
-[sub_resource type="Resource" id="Resource_vcqd0"]
-script = ExtResource("4_yw5f7")
-heal_amount = 3
-title = ""
-description = ""
-max_amount = 1
-expendable = true
-
-[sub_resource type="Resource" id="Resource_xmjbk"]
+[sub_resource type="Resource" id="Resource_qhaku"]
 script = ExtResource("3_4oib4")
-item = SubResource("Resource_vcqd0")
 
-[sub_resource type="Resource" id="Resource_pd3al"]
-script = ExtResource("2_ir6jl")
-title = ""
-description = ""
-max_amount = 1
-expendable = false
-
-[sub_resource type="Resource" id="Resource_2x82u"]
+[sub_resource type="Resource" id="Resource_5cikd"]
 script = ExtResource("3_4oib4")
-item = SubResource("Resource_pd3al")
+
+[sub_resource type="Resource" id="Resource_e0efe"]
+script = ExtResource("3_4oib4")
 
 [node name="Inventory" type="Node2D"]
 script = ExtResource("1_atn56")
-slots = Array[ExtResource("3_4oib4")]([SubResource("Resource_xmjbk"), SubResource("Resource_2x82u")])
+slots = Array[ExtResource("3_4oib4")]([SubResource("Resource_qhaku"), SubResource("Resource_5cikd"), SubResource("Resource_e0efe")])

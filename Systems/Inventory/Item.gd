@@ -12,5 +12,7 @@ class_name Item extends Resource
 ## Does item get removed when used
 @export var expendable:bool = false
 
-func use_item(direction:Vector2i) -> void:
+func use_item(direction:Vector2i, slot:InventorySlot) -> void:
+	if expendable:
+		slot.item = null
 	pass

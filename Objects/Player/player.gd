@@ -93,8 +93,8 @@ func attack_state() -> void:
 		if Inventory.get_weapon():
 			var wep = Inventory.get_item_by_type(BaseSword)
 			var dir = GridHelper.get_cell_pos_in_tilemap(tilemap, position)-pos
-			if wep:
-				wep.use_item(dir)
+			if wep[0]:
+				wep[0].use_item(dir, wep[1])
 			cur_outline = get_outline(dir)
 			if cur_outline:
 				cur_outline.selected = true
@@ -139,6 +139,13 @@ func end_move_state() -> void:
 func reset_state_stuff() -> void:
 	reset_outline()
 	pass
+	
+func damage(amount:int):
+	var shield = Inventory.get_item_by_type(Shield)
+	if shield[0]:
+		shield[0].use_item(Vector2i.UP, shield[1])
+		return
+	print("hur :(")
 
 func die():
 	get_tree().reload_current_scene()
