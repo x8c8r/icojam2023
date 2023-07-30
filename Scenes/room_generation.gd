@@ -3,6 +3,7 @@ extends Node2D
 var enemies_pos = []
 @export var room_number: int
 @export var enemy_path = preload("res://Objects/Enemy/BaseEnemy.tscn")
+@export var range_enemy_path = preload("res://Objects/Enemy/little_archer.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -51,7 +52,11 @@ func try_enemy_pos():
 	return enemy_pos
 
 func spawn_enemy(pos, level):
-	var e = enemy_path.instantiate()
+	var e 
+	if randi_range(0,1):
+		e = enemy_path.instantiate()
+	else:
+		e = range_enemy_path.instantiate()
 	e.global_position = GridHelper.get_cell_pos_in_world(GameManager.get_player().tilemap, pos)
 	e.level = level
 	add_child(e)

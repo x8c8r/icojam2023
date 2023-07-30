@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://d00a44efrirkr"]
+
+[ext_resource type="Script" path="res://Objects/Enemy/little_archer.gd" id="1_rg7a3"]
+[ext_resource type="Texture2D" uid="uid://pl8bvpt8tuyl" path="res://Objects/Enemy/archer.png" id="2_ecpy4"]
+[ext_resource type="Texture2D" uid="uid://156k405ap8b8" path="res://exclamation-mark.png" id="3_8uebw"]
+[ext_resource type="Texture2D" uid="uid://dh3kpqkn0a166" path="res://Objects/Enemy/arrow.png" id="4_5ddgn"]
+[ext_resource type="Script" path="res://Arrow.gd" id="5_aupmh"]
+
+[node name="little_archer" type="Node2D"]
+script = ExtResource("1_rg7a3")
+
+[node name="Archer2" type="Sprite2D" parent="."]
+texture = ExtResource("2_ecpy4")
+
+[node name="warning" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(9, -32)
+texture = ExtResource("3_8uebw")
+
+[node name="Arrow" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_5ddgn")
+script = ExtResource("5_aupmh")

@@ -33,7 +33,7 @@ func move_outline(target_pos:Vector2) -> void:
 
 func get_outline(dir:Vector2i) -> Outline:
 	for i in outlines:
-		if i.direction == dir:
+		if i.direction == -dir:
 			return i
 	return
 func reset_outline() -> void:
