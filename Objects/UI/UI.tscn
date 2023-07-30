@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://rb23gg0owvx4"]
+[gd_scene load_steps=7 format=3 uid="uid://rb23gg0owvx4"]
 
 [ext_resource type="PackedScene" uid="uid://y2jeovytl3y3" path="res://Objects/UI/Timer/UITimer.tscn" id="1_6p6xm"]
+[ext_resource type="FontFile" uid="uid://bpydnras7w7b" path="res://game_over.ttf" id="2_gbc7q"]
 [ext_resource type="Script" path="res://Scenes/FadeInOut.gd" id="2_l1o47"]
 
 [sub_resource type="Animation" id="Animation_wcnis"]
@@ -48,7 +49,17 @@ anchor_left = 0.5
 anchor_right = 0.5
 grow_horizontal = 2
 
+[node name="Score" type="Label" parent="."]
+offset_left = 932.0
+offset_top = 29.0
+offset_right = 1156.0
+offset_bottom = 72.0
+theme_override_fonts/font = ExtResource("2_gbc7q")
+theme_override_font_sizes/font_size = 64
+text = "Room : -1"
+
 [node name="FadeInOut" type="ColorRect" parent="."]
+visible = false
 z_index = 10
 offset_right = 5120.0
 offset_bottom = 2706.0
