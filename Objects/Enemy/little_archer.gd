@@ -31,14 +31,16 @@ func process_end_state():
 
 	if $warning.visible:
 		if tile_player_pos.x == tile_pos.x or tile_player_pos.y == tile_pos.y:
-			if shoot_axis == (GameManager.get_player().position - position).normalized():
+			if Vector2(shoot_axis) == (GameManager.get_player().position - position).normalized():
 				var tween = get_tree().create_tween()
 				$Arrow.show()
 				$Arrow.position = Vector2.ZERO
 				GameManager.get_node("Timer").paused = true
 				$Arrow.target = GameManager.get_player().global_position
-				tween.tween_property($Arrow, "global_position", GameManager.get_player().global_position, global_position.distance_to(GameManager.get_player().global_position)/arrow_speed)
-				await tween.finished
+				$Arrow.moving = true
+				
+				#tween.tween_property($Arrow, "global_position", GameManager.get_player().global_position, global_position.distance_to(GameManager.get_player().global_position)/arrow_speed)
+				await $Arrow.done
 				$Arrow.hide()
 				GameManager.get_player().damage(attack_damage)
 				GameManager.get_node("Timer").paused = false
@@ -50,9 +52,10 @@ func process_end_state():
 		$Arrow.show()
 		$Arrow.position = Vector2.ZERO
 		print(global_position.distance_to((((tile_pos + shoot_axis*8).clamp(Vector2i.ZERO, Vector2i.ONE*7)*64)+Vector2i.ONE*32))/arrow_speed)
-		tween.tween_property($Arrow, "global_position", (((tile_pos + shoot_axis*8).clamp(Vector2i.ZERO, Vector2i.ONE*7)*64)+Vector2i.ONE*32),global_position.distance_to((((tile_pos + shoot_axis*8).clamp(Vector2i.ZERO, Vector2i.ONE*7)*64)+Vector2i.ONE*32))/arrow_speed)
+		$Arrow.moving = true
+		#tween.tween_property($Arrow, "global_position", (((tile_pos + shoot_axis*8).clamp(Vector2i.ZERO, Vector2i.ONE*7)*64)+Vector2i.ONE*32),global_position.distance_to((((tile_pos + shoot_axis*8).clamp(Vector2i.ZERO, Vector2i.ONE*7)*64)+Vector2i.ONE*32))/arrow_speed)
 		$Arrow.target = (((tile_pos + shoot_axis*8).clamp(Vector2i.ZERO, Vector2i.ONE*7)*64)+Vector2i.ONE*32)
-		await tween.finished
+		await $Arrow.done
 		$Arrow.hide()
 		$warning.hide()
 		return
@@ -82,7 +85,7 @@ func process_end_state():
 
 func compute_stats():
 	attack_damage = level + 1
-	hp = max(1,level/2)
+	hp = 1
 	#print("enemy hp:", hp)
 
 func die():

@@ -70,7 +70,7 @@ func process_end_state():
 
 func compute_stats():
 	attack_damage = level
-	hp = level
+	hp = 1
 	#print("enemy hp:", hp)
 
 func die():
