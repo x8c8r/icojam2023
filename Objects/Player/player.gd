@@ -123,7 +123,8 @@ func end_attack_state() -> void:
 	pass
 	
 func end_move_state() -> void:
-	if move_tile_target != prev_move_tile_target:
+	print(get_outline(-(Vector2i(move_tile_target)-GridHelper.get_cell_pos_in_tilemap(tilemap, position))))
+	if move_tile_target != prev_move_tile_target and get_outline(-(Vector2i(move_tile_target)-GridHelper.get_cell_pos_in_tilemap(tilemap, position))).visible:
 		move(move_tile_target)
 	prev_move_tile_target = move_tile_target
 	pass
@@ -140,7 +141,7 @@ func damage(amount:int):
 	hp -= amount
 	if hp <= 0:
 		die()
-	print(hp)
+	#print(hp)
 
 func die():
 	GameManager.room = 1
