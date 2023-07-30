@@ -145,7 +145,10 @@ func damage(amount:int):
 	if shield[0]:
 		shield[0].use_item(Vector2i.UP, shield[1])
 		return
-	print("hur :(")
+	hp -= amount
+	if hp <= 0:
+		die()
+	print(hp)
 
 func die():
 	get_tree().reload_current_scene()

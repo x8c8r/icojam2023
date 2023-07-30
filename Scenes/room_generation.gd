@@ -36,7 +36,7 @@ func spawn_enemies(number, level):
 	#print(number, " ", level)
 	for i in range(number):
 		var enemy_pos = try_enemy_pos()
-		spawn_enemy(enemy_pos)
+		spawn_enemy(enemy_pos, level)
 
 func try_enemy_pos():
 	var enemy_pos = Vector2i(randi_range(1,6), randi_range(1,6))
@@ -48,7 +48,8 @@ func try_enemy_pos():
 			return try_enemy_pos()
 	return enemy_pos
 
-func spawn_enemy(pos):
+func spawn_enemy(pos, level):
 	var e = enemy_path.instantiate()
 	e.global_position = GridHelper.get_cell_pos_in_world(GameManager.get_player().tilemap, pos)
+	e.level = level
 	add_child(e)
