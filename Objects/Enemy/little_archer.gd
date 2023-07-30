@@ -49,9 +49,9 @@ func process_end_state():
 		var tween = get_tree().create_tween()
 		$Arrow.show()
 		$Arrow.position = Vector2.ZERO
-		print((tile_pos + shoot_axis*8).clamp(Vector2i.ZERO, Vector2i.ONE*7))
-		tween.tween_property($Arrow, "global_position", Vector2i(((Vector2i(tile_pos) + shoot_axis*8).clamp(Vector2i.ZERO, Vector2i.ONE*7)*64))+Vector2i.ONE*32, global_position.distance_to(((Vector2i(tile_pos) + shoot_axis*8).clamp(Vector2i.ZERO, Vector2i.ONE*7)*64)+Vector2i.ONE*32/arrow_speed))
-		$Arrow.target = ((tile_pos + shoot_axis*8).clamp(Vector2i.ZERO, Vector2i.ONE*7)*64)+Vector2i.ONE*32
+		print(global_position.distance_to((((tile_pos + shoot_axis*8).clamp(Vector2i.ZERO, Vector2i.ONE*7)*64)+Vector2i.ONE*32))/arrow_speed)
+		tween.tween_property($Arrow, "global_position", (((tile_pos + shoot_axis*8).clamp(Vector2i.ZERO, Vector2i.ONE*7)*64)+Vector2i.ONE*32),global_position.distance_to((((tile_pos + shoot_axis*8).clamp(Vector2i.ZERO, Vector2i.ONE*7)*64)+Vector2i.ONE*32))/arrow_speed)
+		$Arrow.target = (((tile_pos + shoot_axis*8).clamp(Vector2i.ZERO, Vector2i.ONE*7)*64)+Vector2i.ONE*32)
 		await tween.finished
 		$Arrow.hide()
 		$warning.hide()
