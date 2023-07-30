@@ -2,6 +2,8 @@ class_name game_manager extends Node
 
 var floor:int = 1
 var room:int = 1
+var health: int = 3
+
 
 ## Emitted when the time for the turn runs out
 signal turn_ended

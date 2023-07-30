@@ -91,6 +91,7 @@ func compute_stats():
 func die():
 	EnemiesManager.enemies = EnemiesManager.enemies.filter(func(val): return val != self)
 	if EnemiesManager.enemies.is_empty():
+		GameManager.health = GameManager.get_player().hp
 		GameManager.room += 1
 		$"../UI/FadeInOut/AnimationPlayer".play_backwards("FadeIn")
 		await $"../UI/FadeInOut/AnimationPlayer".animation_finished

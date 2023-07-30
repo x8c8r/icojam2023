@@ -123,7 +123,7 @@ func end_attack_state() -> void:
 	pass
 	
 func end_move_state() -> void:
-	print(get_outline(-(Vector2i(move_tile_target)-GridHelper.get_cell_pos_in_tilemap(tilemap, position))))
+	#print(get_outline(-(Vector2i(move_tile_target)-GridHelper.get_cell_pos_in_tilemap(tilemap, position))).visible)
 	if move_tile_target != prev_move_tile_target and get_outline(-(Vector2i(move_tile_target)-GridHelper.get_cell_pos_in_tilemap(tilemap, position))).visible:
 		move(move_tile_target)
 	prev_move_tile_target = move_tile_target
@@ -147,3 +147,8 @@ func die():
 	GameManager.room = 1
 	get_tree().reload_current_scene()
 	super()
+
+func _ready():
+	super()
+	hp = GameManager.health
+	print(hp)
