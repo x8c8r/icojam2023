@@ -12,7 +12,8 @@ func is_valid_movement(tilemap:TileMap, target_pos:Vector2, current_pos:Vector2)
 	if cell_exists: # There is a tile at that place
 		return false
 	else:
-		if target_pos.x-current_pos.x + target_pos.y-current_pos.y > 2: # Target pos is too far away
+		print(target_pos.x-current_pos.x + target_pos.y-current_pos.y)
+		if abs(target_pos.x-current_pos.x + target_pos.y-current_pos.y) > 2: # Target pos is too far away
 			return false
 		else:
 			return true
