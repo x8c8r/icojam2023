@@ -91,9 +91,10 @@ func attack_state() -> void:
 		var pos = GridHelper.get_cell_pos_in_tilemap(tilemap, get_viewport().get_mouse_position())
 		#print(Inventory.get_weapon())
 		if Inventory.get_weapon():
-			var wep = Inventory.get_weapon()
+			var wep = Inventory.get_item_by_type(BaseSword)
 			var dir = GridHelper.get_cell_pos_in_tilemap(tilemap, position)-pos
-			wep.use_item(dir)
+			if wep:
+				wep.use_item(dir)
 			cur_outline = get_outline(dir)
 			if cur_outline:
 				cur_outline.selected = true

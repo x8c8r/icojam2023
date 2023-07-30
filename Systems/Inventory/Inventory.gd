@@ -7,6 +7,13 @@ func get_weapon() -> Item:
 		if slot.item is BaseSword:
 			return slot.item
 	return null
+	
+func get_item_by_type(type:Variant) -> Item:
+	for slot in slots:
+		if slot.item:
+			if slot.item.get_script() == type:
+				return slot.item
+	return null
 
 @export var selected_slot:int = 0
 
