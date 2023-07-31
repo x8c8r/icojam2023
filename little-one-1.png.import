@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpdw2jayuq7av"
-path="res://.godot/imported/grid_outline.png-c8b00a3fa9d064d73473b64d014cebe4.ctex"
+uid="uid://dablwweygnljw"
+path="res://.godot/imported/little-one-1.png-2f66d7f434294132f21f3433ac693018.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/grid_outline.png"
-dest_files=["res://.godot/imported/grid_outline.png-c8b00a3fa9d064d73473b64d014cebe4.ctex"]
+source_file="res://little-one-1.png"
+dest_files=["res://.godot/imported/little-one-1.png-2f66d7f434294132f21f3433ac693018.ctex"]
 
 [params]
 

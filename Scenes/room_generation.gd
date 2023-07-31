@@ -57,6 +57,6 @@ func spawn_enemy(pos, level):
 		e = enemy_path.instantiate()
 	else:
 		e = range_enemy_path.instantiate()
-	e.global_position = GridHelper.get_cell_pos_in_world(GameManager.get_player().tilemap, pos)
+	e.position = GridHelper.get_cell_pos_in_world(GameManager.get_player().tilemap, pos)
 	e.level = level
-	add_child(e)
+	$Enemies.add_child(e)

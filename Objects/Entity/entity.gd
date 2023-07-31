@@ -5,9 +5,10 @@ class_name Entity extends Node2D
 @export var base_hp:int = 3
 var hp:int = base_hp
 
-@onready var tilemap:TileMap = get_tree().current_scene.get_node("Collision")
+@onready var tilemap:TileMap = get_tree().current_scene.get_node("BaseRoom").get_node("Collision")
 
 func _ready():
+	print(tilemap)
 	GameManager.turn_ended.connect(end_turn)
 	#print(tilemap.local_to_map(position))
 func _process(delta):
@@ -19,7 +20,7 @@ func move(target_pos:Vector2i) -> void:
 	var pos = GridHelper.get_cell_pos_in_world(tilemap, target_pos)
 	position = pos
 
-
+# global_position
 
 ## STATES
 enum entityState {
