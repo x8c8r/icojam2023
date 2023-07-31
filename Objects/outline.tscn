@@ -50,5 +50,12 @@ libraries = {
 "": SubResource("AnimationLibrary_iof0v")
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_g5vq8")
+[node name="Sprite2D" type="TextureButton" parent="."]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+pivot_offset = Vector2(32, 32)
+texture_normal = ExtResource("1_g5vq8")
+
+[connection signal="pressed" from="Sprite2D" to="." method="_on_pressed"]

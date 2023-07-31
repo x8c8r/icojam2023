@@ -5,6 +5,8 @@ var prev_selected:bool = selected
 @export var direction:Vector2i = Vector2i.UP
 @onready var tilemap:TileMap = get_tree().current_scene.get_node("Collision")
 
+signal got_pressed(direction)
+
 func update(target_pos:Vector2, position:Vector2, state:Entity.entityState) -> void:
 	
 	visible = GridHelper.is_valid_movement(tilemap, GridHelper.get_cell_pos_in_tilemap(tilemap, position)+direction, GridHelper.get_cell_pos_in_tilemap(tilemap, position)) && global_position.x > 32 && global_position.y < 480 && global_position.y > 32 && global_position.x < 480
@@ -32,3 +34,7 @@ func deselect() -> void:
 	
 func set_color(target_color:Color):
 	$Sprite2D.modulate = target_color
+
+
+func _on_pressed():
+	got_pressed.emit(direction)

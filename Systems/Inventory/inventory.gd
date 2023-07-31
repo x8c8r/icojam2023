@@ -18,7 +18,7 @@ func get_item_by_type(type:Variant) -> Array:
 
 @export var selected_slot:int = 0
 func _ready():
-	print(len(slots))
+	#print(len(slots))
 	add_item(BaseSword.new(), false)
 	for i in range(3):
 		add_item(HealthPotion.new(), true)

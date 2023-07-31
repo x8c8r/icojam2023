@@ -97,10 +97,11 @@ func attack_state() -> void:
 	
 func move_state() -> void:
 	super()
+	return
 	if inputs.confirm_action:
-		print(tilemap)
-		var pos = GridHelper.get_cell_pos_in_tilemap(tilemap, get_viewport().get_mouse_position())
 		
+		var pos = GridHelper.get_cell_pos_in_tilemap(tilemap, get_viewport().get_mouse_position())
+		#print_debug(pos-GridHelper.get_cell_pos_in_tilemap(tilemap,position))
 		if GridHelper.is_valid_movement(tilemap,GridHelper.get_cell_pos_in_tilemap(tilemap, position),pos):
 			cur_outline = get_outline(GridHelper.get_movement_direction(tilemap, GridHelper.get_cell_pos_in_tilemap(tilemap, position), pos))
 			if cur_outline:
@@ -144,12 +145,18 @@ func damage(amount:int):
 	#print(hp)
 
 func die():
-	print(GameManager.room)
+	#print(GameManager.room)
 	get_tree().change_scene_to_file("res://Scenes/you_died.tscn")
 	super()
 
 func _ready():
 	super()
+	print_debug($Outlines.position)
 	hp = GameManager.health
 	$"../UI/Score".text = "Room: " + str(GameManager.room)
-	print(hp)
+	#print(hp)
+	for i in outlines:
+		i.connect("got_pressed", outline_pressed)
+
+func outline_pressed(direction: Vector2i):
+	move(GridHelper.get_cell_pos_in_tilemap(tilemap,position)+direction)
