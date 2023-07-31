@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfhe5p3shjm2r"
-path="res://.godot/imported/outlined_grid.png-ec76f00299a1dc6f1590e95d888c56ff.ctex"
+uid="uid://156k405ap8b8"
+path="res://.godot/imported/exclamation-mark.png-e8fc6e7db7d63cd70793675cd6325dbc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://outlined_grid.png"
-dest_files=["res://.godot/imported/outlined_grid.png-ec76f00299a1dc6f1590e95d888c56ff.ctex"]
+source_file="res://Sprites/exclamation-mark.png"
+dest_files=["res://.godot/imported/exclamation-mark.png-e8fc6e7db7d63cd70793675cd6325dbc.ctex"]
 
 [params]
 

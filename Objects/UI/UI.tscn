@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://rb23gg0owvx4"]
 
 [ext_resource type="PackedScene" uid="uid://y2jeovytl3y3" path="res://Objects/UI/Timer/UITimer.tscn" id="1_6p6xm"]
-[ext_resource type="FontFile" uid="uid://bpydnras7w7b" path="res://game_over.ttf" id="2_gbc7q"]
+[ext_resource type="FontFile" uid="uid://bpydnras7w7b" path="res://Resources/game_over.ttf" id="2_gbc7q"]
 [ext_resource type="Script" path="res://Scenes/FadeInOut.gd" id="2_l1o47"]
 
 [sub_resource type="Animation" id="Animation_wcnis"]
@@ -61,8 +61,8 @@ text = "Room : -1"
 [node name="FadeInOut" type="ColorRect" parent="."]
 visible = false
 z_index = 10
-offset_right = 5120.0
-offset_bottom = 2706.0
+offset_right = 1920.0
+offset_bottom = 1009.0
 color = Color(0, 0, 0, 1)
 script = ExtResource("2_l1o47")
 

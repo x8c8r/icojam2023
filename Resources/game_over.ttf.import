@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://b3j87sihvmvwh"
-path="res://.godot/imported/ErasBoldITC.ttf-1f291d93ac54f92155c177dc7cfd5e8a.fontdata"
+uid="uid://bpydnras7w7b"
+path="res://.godot/imported/game_over.ttf-7fb897eab19300ee2a4b18b0305bb5e7.fontdata"
 
 [deps]
 
-source_file="res://ErasBoldITC.ttf"
-dest_files=["res://.godot/imported/ErasBoldITC.ttf-1f291d93ac54f92155c177dc7cfd5e8a.fontdata"]
+source_file="res://Resources/game_over.ttf"
+dest_files=["res://.godot/imported/game_over.ttf-7fb897eab19300ee2a4b18b0305bb5e7.fontdata"]
 
 [params]
 

@@ -10,7 +10,9 @@ signal turn_ended
 
 func _process(delta):
 	if !get_tree().current_scene.is_in_group("menu"):
-		get_tree().current_scene.get_node("UI").get_node("UITimer").change_time($Timer.time_left)
+		var ui = get_tree().current_scene.get_node_or_null("UI")
+		if ui:
+			ui.get_node("UITimer").change_time($Timer.time_left)
 	
 func turn_end() -> void:
 	turn_ended.emit()

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d3e1iw71wr0yg"]
 
 [ext_resource type="Script" path="res://Objects/outline.gd" id="1_f6axh"]
-[ext_resource type="Texture2D" uid="uid://bpdw2jayuq7av" path="res://grid_outline.png" id="1_g5vq8"]
+[ext_resource type="Texture2D" uid="uid://c7gl7sk8wh1eh" path="res://Sprites/grid_outline.png" id="1_g5vq8"]
 
 [sub_resource type="Animation" id="Animation_tyqe3"]
 resource_name = "idle"

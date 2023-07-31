@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://beggbbag05fqs"
-path="res://.godot/imported/billyidea1.png-3f6fc0a8291cb56c6b2aaed99c8eae89.ctex"
+uid="uid://bfhe5p3shjm2r"
+path="res://.godot/imported/outlined_grid.png-2a9db5bb639f793506c22c8fb2833f38.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://billyidea1.png"
-dest_files=["res://.godot/imported/billyidea1.png-3f6fc0a8291cb56c6b2aaed99c8eae89.ctex"]
+source_file="res://Sprites/outlined_grid.png"
+dest_files=["res://.godot/imported/outlined_grid.png-2a9db5bb639f793506c22c8fb2833f38.ctex"]
 
 [params]
 
