@@ -15,6 +15,14 @@ func get_item_by_type(type:Variant) -> Array:
 			if slot.item.get_script() == type:
 				return [slot.item, slot]
 	return [null, null]
+	
+func get_item_amount(type:Variant) -> int:
+	var amount:int = 0
+	for slot in slots:
+		if slot.item != null:
+			if slot.item.get_script() == type:
+				amount += 1
+	return amount
 
 @export var selected_slot:int = 0
 func _ready():
@@ -43,6 +51,6 @@ func add_item(item:Item, expendable:bool):
 			return
 			
 func use_item() -> void:
-	var item = slots[selected_slot].item
-	if item:
-		item.use_item(Vector2.ZERO, slots[selected_slot])
+	var item = get_item_by_type(HealthPotion)
+	if item[0]:
+		item[0].use_item(Vector2.ZERO, item[1])

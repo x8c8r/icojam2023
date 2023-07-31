@@ -218,7 +218,7 @@ color = Color(0, 0, 0, 1)
 position = Vector2(616, 325)
 scale = Vector2(1.3, 1.3)
 sprite_frames = SubResource("SpriteFrames_mdwpl")
-frame_progress = 0.0592504
+frame_progress = 0.281042
 
 [node name="Button" type="Button" parent="CanvasLayer/Control"]
 texture_filter = 1
