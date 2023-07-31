@@ -65,8 +65,8 @@ text = "Room : -1"
 [node name="FadeInOut" type="ColorRect" parent="."]
 visible = false
 z_index = 10
-offset_right = 5120.0
-offset_bottom = 2696.0
+offset_right = 1920.0
+offset_bottom = 1009.0
 color = Color(0, 0, 0, 1)
 script = ExtResource("2_l1o47")
 
