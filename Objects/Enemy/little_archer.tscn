@@ -1,16 +1,55 @@
-[gd_scene load_steps=6 format=3 uid="uid://d00a44efrirkr"]
+[gd_scene load_steps=10 format=3 uid="uid://d00a44efrirkr"]
 
 [ext_resource type="Script" path="res://Objects/Enemy/little_archer.gd" id="1_rg7a3"]
-[ext_resource type="Texture2D" uid="uid://pl8bvpt8tuyl" path="res://Objects/Enemy/archer.png" id="2_ecpy4"]
+[ext_resource type="Texture2D" uid="uid://dr7wurpebnjb1" path="res://little-archer-1.png" id="2_04uye"]
 [ext_resource type="Texture2D" uid="uid://156k405ap8b8" path="res://Sprites/exclamation-mark.png" id="3_8uebw"]
 [ext_resource type="Texture2D" uid="uid://dh3kpqkn0a166" path="res://Objects/Enemy/arrow.png" id="4_5ddgn"]
 [ext_resource type="Script" path="res://Arrow.gd" id="5_aupmh"]
+[ext_resource type="Texture2D" uid="uid://d1ywk4kpcihwo" path="res://little-archer-2.png" id="6_b7lq3"]
+
+[sub_resource type="Animation" id="Animation_2ao8i"]
+resource_name = "anim"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Archer2:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_04uye"), ExtResource("6_b7lq3"), ExtResource("2_04uye")]
+}
+
+[sub_resource type="Animation" id="Animation_afqpp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Archer2:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_04uye")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n65sp"]
+_data = {
+"RESET": SubResource("Animation_afqpp"),
+"anim": SubResource("Animation_2ao8i")
+}
 
 [node name="little_archer" type="Node2D"]
 script = ExtResource("1_rg7a3")
 
 [node name="Archer2" type="Sprite2D" parent="."]
-texture = ExtResource("2_ecpy4")
+texture = ExtResource("2_04uye")
 
 [node name="warning" type="Sprite2D" parent="."]
 visible = false
@@ -21,3 +60,9 @@ texture = ExtResource("3_8uebw")
 visible = false
 texture = ExtResource("4_5ddgn")
 script = ExtResource("5_aupmh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "anim"
+libraries = {
+"": SubResource("AnimationLibrary_n65sp")
+}
