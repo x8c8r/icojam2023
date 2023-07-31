@@ -161,3 +161,5 @@ func _ready():
 func outline_pressed(direction: Vector2i):
 	await GameManager.turn_ended
 	move(GridHelper.get_cell_pos_in_tilemap(tilemap,position)+direction)
+	if GridHelper.get_cell_pos_in_tilemap(tilemap,position) in EnemiesManager.get_enemies_pos().values():
+		EnemiesManager.get_enemies_pos().find_key(GridHelper.get_cell_pos_in_tilemap(tilemap,position)).die()

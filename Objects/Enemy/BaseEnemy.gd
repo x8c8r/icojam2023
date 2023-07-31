@@ -78,8 +78,8 @@ func die():
 	if EnemiesManager.enemies.is_empty():
 		GameManager.health = min(GameManager.get_player().hp+1,3)
 		GameManager.room += 1
-		$"../UI/FadeInOut/AnimationPlayer".play_backwards("FadeIn")
-		await $"../UI/FadeInOut/AnimationPlayer".animation_finished
+#		$"../UI/FadeInOut/AnimationPlayer".play_backwards("FadeIn")
+		#await $"../UI/FadeInOut/AnimationPlayer".animation_finished
 		get_tree().reload_current_scene()
 	await get_tree().process_frame
 	
