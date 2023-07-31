@@ -152,4 +152,4 @@ func _ready():
 	super()
 	hp = GameManager.health
 	$"../UI/Score".text = "Room: " + str(GameManager.room)
-	#print(GameManager.room)
+	print(hp)
