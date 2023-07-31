@@ -159,4 +159,5 @@ func _ready():
 		i.connect("got_pressed", outline_pressed)
 
 func outline_pressed(direction: Vector2i):
+	await GameManager.turn_ended
 	move(GridHelper.get_cell_pos_in_tilemap(tilemap,position)+direction)
