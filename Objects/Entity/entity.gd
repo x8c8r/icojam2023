@@ -5,7 +5,7 @@ class_name Entity extends Node2D
 @export var base_hp:int = 3
 var hp:int = base_hp
 
-@onready var tilemap:TileMap = get_tree().current_scene.get_node("BaseRoom").get_node("Collision")
+@onready var tilemap:TileMap = get_tree().current_scene.get_node("Collision")
 
 func _ready():
 	print(tilemap)

@@ -4,6 +4,7 @@ var enemies_pos = []
 @export var room_number: int
 @export var enemy_path = preload("res://Objects/Enemy/BaseEnemy.tscn")
 @export var range_enemy_path = preload("res://Objects/Enemy/little_archer.tscn")
+@onready var tilemap:TileMap = get_tree().current_scene.get_node("Collision")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -43,7 +44,7 @@ func spawn_enemies(number, level):
 
 func try_enemy_pos():
 	var enemy_pos = Vector2i(randi_range(1,6), randi_range(1,6))
-	var player_pos = GridHelper.get_cell_pos_in_tilemap(GameManager.get_player().tilemap, GameManager.get_player().position)
+	var player_pos = GridHelper.get_cell_pos_in_tilemap(tilemap, GameManager.get_player().position)
 	if (enemy_pos-player_pos).length() < 3:
 		return try_enemy_pos()
 	for i in enemies_pos:

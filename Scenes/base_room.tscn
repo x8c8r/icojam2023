@@ -1,13 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://htr10uuyxuc1"]
+[gd_scene load_steps=8 format=3 uid="uid://htr10uuyxuc1"]
 
 [ext_resource type="PackedScene" uid="uid://cqxq8vy05u8xt" path="res://tilemaps.tscn" id="1_wi17s"]
 [ext_resource type="Script" path="res://Scenes/room_generation.gd" id="1_yp7gw"]
 [ext_resource type="PackedScene" uid="uid://c0g5g5d5km30u" path="res://Objects/Player/player.tscn" id="2_nkaqp"]
+[ext_resource type="Texture2D" uid="uid://cmtvxkx532mfx" path="res://background.png" id="2_xjuh8"]
+[ext_resource type="PackedScene" uid="uid://rb23gg0owvx4" path="res://Objects/UI/UI.tscn" id="3_61lch"]
+[ext_resource type="Texture2D" uid="uid://cwoa8dhd1uods" path="res://background-1.png" id="3_jca7m"]
 [ext_resource type="AudioStream" uid="uid://bi4i7g72nqg2y" path="res://Sounds/Game_jam_2023_soundtrack.mp3" id="4_5ts3u"]
 
 [node name="BaseRoom" type="Node2D"]
 script = ExtResource("1_yp7gw")
 room_number = 1
+
+[node name="Node" type="Node2D" parent="."]
+position = Vector2(-186, 0)
+
+[node name="Background3" type="Sprite2D" parent="Node"]
+position = Vector2(1151, 278)
+texture = ExtResource("3_jca7m")
+
+[node name="Background" type="Sprite2D" parent="Node"]
+position = Vector2(-255, 278)
+texture = ExtResource("3_jca7m")
+
+[node name="Background2" type="Sprite2D" parent="Node"]
+position = Vector2(451, 278)
+texture = ExtResource("2_xjuh8")
 
 [node name="Collision" parent="." instance=ExtResource("1_wi17s")]
 
@@ -18,4 +36,9 @@ position = Vector2(288, 224)
 stream = ExtResource("4_5ts3u")
 autoplay = true
 
+[node name="UI" parent="." instance=ExtResource("3_61lch")]
+
 [node name="Enemies" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(256, 256)

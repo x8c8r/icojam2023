@@ -151,5 +151,5 @@ func die():
 func _ready():
 	super()
 	hp = GameManager.health
-	$"../../UI/Score".text = "Room: " + str(GameManager.room)
+	$"../UI/Score".text = "Room: " + str(GameManager.room)
 	print(hp)

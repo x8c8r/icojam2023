@@ -1,25 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfs8rk1g50c3r"]
+[gd_scene load_steps=2 format=3 uid="uid://didyset6pig36"]
 
-[ext_resource type="Texture2D" uid="uid://cmtvxkx532mfx" path="res://background.png" id="1_l4m52"]
 [ext_resource type="PackedScene" uid="uid://htr10uuyxuc1" path="res://Scenes/base_room.tscn" id="1_l0413"]
-[ext_resource type="Texture2D" uid="uid://cwoa8dhd1uods" path="res://background-1.png" id="2_4n5st"]
-[ext_resource type="PackedScene" uid="uid://rb23gg0owvx4" path="res://Objects/UI/UI.tscn" id="2_nk08r"]
 
 [node name="main" type="Node2D"]
 
-[node name="Background2" type="Sprite2D" parent="."]
-position = Vector2(594, 320)
-texture = ExtResource("1_l4m52")
-
-[node name="Background3" type="Sprite2D" parent="Background2"]
-position = Vector2(700, 0)
-texture = ExtResource("2_4n5st")
-
-[node name="Background" type="Sprite2D" parent="."]
-position = Vector2(-106, 320)
-texture = ExtResource("2_4n5st")
-
 [node name="BaseRoom" parent="." instance=ExtResource("1_l0413")]
-position = Vector2(320, 64)
-
-[node name="UI" parent="." instance=ExtResource("2_nk08r")]

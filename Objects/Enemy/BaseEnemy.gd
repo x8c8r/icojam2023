@@ -20,10 +20,9 @@ func process_end_state():
 	
 	var enemy_target:int = EnemiesManager.enemies_targets.find(self)
 	
-	var collision = GameManager.get_collision()
 	var player = GameManager.get_player()
-	var tile_player_pos: Vector2i = GridHelper.get_cell_pos_in_tilemap(collision, player.position)
-	var tile_pos = GridHelper.get_cell_pos_in_tilemap(collision, position)
+	var tile_player_pos: Vector2i = GridHelper.get_cell_pos_in_tilemap(tilemap, player.position)
+	var tile_pos = GridHelper.get_cell_pos_in_tilemap(tilemap, position)
 	var direction = tile_player_pos - tile_pos
 	if $warning.visible:
 		#print("warning")
